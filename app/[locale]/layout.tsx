@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { NextIntlClientProvider, hasLocale } from "next-intl"
 import { setRequestLocale } from "next-intl/server"
 import { routing } from "@/i18n/routing"
+import { SiteFooter } from "@/components/site-footer"
 import "../globals.css"
 
 const ibmPlexThai = IBM_Plex_Sans_Thai({
@@ -38,7 +39,10 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${ibmPlexThai.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <div className="flex-1">{children}</div>
+          <SiteFooter />
+        </NextIntlClientProvider>
       </body>
     </html>
   )

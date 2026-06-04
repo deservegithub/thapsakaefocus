@@ -51,5 +51,16 @@
     "location": "Location",
     "backToList": "Back to attractions",
     "notTranslated": "This place isn’t translated yet; showing Thai."
+  },
+  "footer": {
+    "about": "Your hub for news, shops, and travel in Thapsakae district, Prachuap Khiri Khan.",
+    "categories": "Categories",
+    "about_title": "About",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "contact": "Contact",
+    "online": "{count} online now",
+    "connecting": "Connecting…",
+    "copyright": "© 2026 thapsakaefocus.com · Community platform (not affiliated with any government agency)"
   }
 }
