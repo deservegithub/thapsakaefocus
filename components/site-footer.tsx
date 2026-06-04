@@ -40,9 +40,21 @@ export async function SiteFooter() {
         <div>
           <div className="mb-3 font-semibold text-white">{t("about_title")}</div>
           <ul className="space-y-2 text-sm text-neutral-400">
-            <li>{t("terms")}</li>
-            <li>{t("privacy")}</li>
-            <li>{t("contact")}</li>
+            <li>
+              <Link href="/terms" className="hover:text-white">
+                {t("terms")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="hover:text-white">
+                {t("privacy")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-white">
+                {t("contact")}
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
