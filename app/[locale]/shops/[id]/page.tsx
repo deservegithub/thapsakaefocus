@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation"
 import { SiteHeader } from "@/components/site-header"
 import { getShopById, sortedImages } from "@/lib/shops"
 import { localized } from "@/lib/i18n-content"
+import { PlaceMap } from "@/components/place-map"
 
 export async function generateMetadata({
   params,
@@ -137,12 +138,13 @@ export default async function ShopDetailPage({
           )}
         </div>
 
-        {/* แผนที่ (placeholder — ของจริงใช้ Leaflet/OSM) */}
-        <h2 className="mt-6 mb-2 font-semibold text-neutral-800">{t("location")}</h2>
-        <div className="flex h-44 items-center justify-center rounded-xl border border-neutral-300 bg-neutral-200 text-sm text-neutral-500">
-          🗺️ แผนที่ (Leaflet / OpenStreetMap)
-          {shop.lat != null && shop.lng != null ? ` · ${shop.lat}, ${shop.lng}` : ""}
-        </div>
+        {/* แผนที่ (Leaflet + OpenStreetMap) */}
+        {shop.lat != null && shop.lng != null && (
+          <>
+            <h2 className="mt-6 mb-2 font-semibold text-neutral-800">{t("location")}</h2>
+            <PlaceMap lat={shop.lat} lng={shop.lng} label={localized(shop, "name", locale)} />
+          </>
+        )}
       </main>
     </div>
   )
