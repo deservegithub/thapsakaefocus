@@ -2,7 +2,9 @@
 -- ทับสะแกโฟกัส — Baseline schema (0001_init)
 -- สองภาษา (_th/_en), RLS แบบ public อ่าน published, admin จัดการทุกอย่าง
 -- รันบน Supabase SQL Editor (โปรเจกต์นี้เป็น project ใหม่ public schema ว่าง)
+-- ห่อด้วย begin/commit: ถ้าพลาดตรงไหน rollback ทั้งหมด → รันซ้ำได้สะอาด
 -- ============================================================
+begin;
 
 -- ---------- Extensions ----------
 create extension if not exists pg_trgm; -- ค้นหาไทย/อังกฤษแบบ substring (ILIKE/trigram)
@@ -20,8 +22,7 @@ do $$ begin
   create type public.news_type as enum ('announcement', 'event');
 exception when duplicate_object then null; end $$;
 
--- ---------- ฟังก์ชันร่วม ----------
--- อัปเดต updated_at อัตโนมัติ
+-- ---------- ฟังก์ชัน updated_at (ไม่อ้างอิงตาราง สร้างก่อนได้) ----------
 create or replace function public.set_updated_at()
 returns trigger
 language plpgsql
@@ -30,20 +31,6 @@ begin
   new.updated_at = now();
   return new;
 end; $$;
-
--- เช็กว่าเป็น admin (SECURITY DEFINER → bypass RLS ของ profiles กัน recursion)
-create or replace function public.is_admin()
-returns boolean
-language sql
-security definer
-set search_path = public
-stable
-as $$
-  select exists (
-    select 1 from public.profiles
-    where id = auth.uid() and role = 'admin'
-  );
-$$;
 
 -- ============================================================
 -- profiles (1:1 กับ auth.users)
@@ -84,6 +71,21 @@ end; $$;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function public.handle_new_user();
+
+-- เช็กว่าเป็น admin (SECURITY DEFINER → bypass RLS ของ profiles กัน recursion)
+-- ต้องประกาศ "หลัง" สร้างตาราง profiles เพราะ SQL function เช็ก relation ตอนสร้าง
+create or replace function public.is_admin()
+returns boolean
+language sql
+security definer
+set search_path = public
+stable
+as $$
+  select exists (
+    select 1 from public.profiles
+    where id = auth.uid() and role = 'admin'
+  );
+$$;
 
 -- ============================================================
 -- Lookup tables (หมวดหมู่ — แก้/เพิ่มได้, มี label สองภาษา)
@@ -330,3 +332,5 @@ create policy "storage: admin แก้ public-images"
 create policy "storage: admin ลบ public-images"
   on storage.objects for delete
   using (bucket_id = 'public-images' and public.is_admin());
+
+commit;
