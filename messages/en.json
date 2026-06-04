@@ -14,5 +14,17 @@
     "title": "Everything Thapsakae, in one place",
     "subtitle": "News, shops, and travel spots of Thapsakae district, Prachuap Khiri Khan",
     "searchPlaceholder": "Search news, shops, places…"
+  },
+  "news": {
+    "title": "News",
+    "subtitle": "Announcements and events in Thapsakae",
+    "all": "All",
+    "announcement": "Announcement",
+    "event": "Event",
+    "empty": "No news in this category yet",
+    "views": "views",
+    "related": "Related news",
+    "backToList": "Back to news",
+    "notTranslated": "This article isn’t translated yet; showing Thai."
   }
 }
