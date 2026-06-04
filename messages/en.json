@@ -73,5 +73,17 @@
     "countNews": "News ({count})",
     "countShops": "Shops ({count})",
     "countPlaces": "Travel ({count})"
+  },
+  "legal": {
+    "updated": "Last updated:",
+    "contactIntro": "Feedback, corrections, listing your shop, or a personal-data request — reach out anytime.",
+    "channels": "Contact channels",
+    "email": "Email",
+    "line": "LINE Official",
+    "facebook": "Facebook",
+    "area": "Service area",
+    "areaValue": "Thapsakae District, Prachuap Khiri Khan",
+    "shopOwnerTitle": "Shop owner?",
+    "shopOwnerBody": "Soon shops will be able to register and edit their own info. For now, send us your details and our team will list it for you."
   }
 }
