@@ -35,14 +35,22 @@ export default function HomePage({ params }: { params: Promise<{ locale: string 
 
       <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-12">
         {/* ทางลัดไปหมวดที่ทำแล้ว */}
-        <Link
-          href="/news"
-          className="bg-primary-600 hover:bg-primary-700 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 font-medium text-white"
-        >
-          📰 {nav("news")} ›
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/news"
+            className="bg-primary-600 hover:bg-primary-700 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 font-medium text-white"
+          >
+            📰 {nav("news")} ›
+          </Link>
+          <Link
+            href="/shops"
+            className="bg-accent-500 hover:bg-accent-600 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 font-medium text-white"
+          >
+            🛍️ {nav("shops")} ›
+          </Link>
+        </div>
         <div className="mt-6 rounded-xl border border-dashed border-neutral-300 bg-white p-8 text-center text-neutral-500">
-          🚧 หมวดข่าวพร้อมแล้ว — ร้านค้า/ท่องเที่ยว/ค้นหา กำลังพัฒนาตามดีไซน์ใน{" "}
+          🚧 หมวดข่าวและร้านค้าพร้อมแล้ว — ท่องเที่ยว/ค้นหา กำลังพัฒนาตามดีไซน์ใน{" "}
           <code className="text-primary-700">mockups/</code>
         </div>
       </main>

@@ -26,5 +26,18 @@
     "related": "Related news",
     "backToList": "Back to news",
     "notTranslated": "This article isn’t translated yet; showing Thai."
+  },
+  "shops": {
+    "title": "Shops & Services",
+    "subtitle": "Restaurants, cafes, stays, and souvenirs in Thapsakae",
+    "all": "All",
+    "empty": "No shops in this category yet",
+    "call": "Call",
+    "directions": "Directions",
+    "share": "Share",
+    "contact": "Contact",
+    "location": "Location",
+    "backToList": "Back to shops",
+    "notTranslated": "This shop isn’t translated yet; showing Thai."
   }
 }
