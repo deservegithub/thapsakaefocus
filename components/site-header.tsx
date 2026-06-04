@@ -42,9 +42,9 @@ export function SiteHeader({ active }: { active?: Section }) {
           <Link href="/shops" className={linkCls("shops")}>
             {t("shops")}
           </Link>
-          <span className="cursor-not-allowed px-3 py-2 text-sm font-medium text-neutral-300">
+          <Link href="/tourism" className={linkCls("tourism")}>
             {t("tourism")}
-          </span>
+          </Link>
         </nav>
 
         {/* ตัวสลับภาษา — คงหน้าเดิม */}

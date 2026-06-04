@@ -48,10 +48,15 @@ export default function HomePage({ params }: { params: Promise<{ locale: string 
           >
             🛍️ {nav("shops")} ›
           </Link>
+          <Link
+            href="/tourism"
+            className="bg-primary-600 hover:bg-primary-700 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 font-medium text-white"
+          >
+            🏖️ {nav("tourism")} ›
+          </Link>
         </div>
         <div className="mt-6 rounded-xl border border-dashed border-neutral-300 bg-white p-8 text-center text-neutral-500">
-          🚧 หมวดข่าวและร้านค้าพร้อมแล้ว — ท่องเที่ยว/ค้นหา กำลังพัฒนาตามดีไซน์ใน{" "}
-          <code className="text-primary-700">mockups/</code>
+          🚧 ครบ 3 หมวดเนื้อหาแล้ว — ระบบค้นหา/ตัวนับออนไลน์/ล็อกอิน กำลังพัฒนาตามแผน
         </div>
       </main>
     </div>

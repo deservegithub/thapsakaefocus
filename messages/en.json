@@ -39,5 +39,17 @@
     "location": "Location",
     "backToList": "Back to shops",
     "notTranslated": "This shop isn’t translated yet; showing Thai."
+  },
+  "tourism": {
+    "title": "Tourist Attractions",
+    "subtitle": "Beaches, mountains, community life, and temples in Thapsakae",
+    "all": "All",
+    "empty": "No places in this category yet",
+    "directions": "Directions",
+    "share": "Share",
+    "about": "About this place",
+    "location": "Location",
+    "backToList": "Back to attractions",
+    "notTranslated": "This place isn’t translated yet; showing Thai."
   }
 }
