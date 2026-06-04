@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>หาดทับสะแก — ทับสะแกโฟกัส</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="theme.js"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center py-6 text-neutral-800">
+
+  <div class="phone mb-3 px-4"><p class="text-xs text-neutral-600">Wireframe · หน้ารายละเอียดที่เที่ยว · มือถือ</p></div>
+
+  <div class="phone bg-neutral-50 shadow-lg overflow-hidden" style="border-radius: var(--radius-xl);">
+
+    <header class="sticky top-0 z-20 bg-primary-600 text-white" style="height: var(--header-h);">
+      <div class="h-full px-2 flex items-center justify-between">
+        <a href="tourism.html" class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-xl">‹</a>
+        <div class="flex items-center gap-1">
+          <button class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-lg">🔗</button>
+          <button class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-lg">♡</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- แกลเลอรี -->
+    <div class="flex overflow-x-auto no-scrollbar snap-x">
+      <div class="w-full shrink-0 snap-center h-56 bg-gradient-to-br from-primary-300 to-primary-500 flex items-center justify-center text-white/70 text-sm">รูปสถานที่ 1</div>
+      <div class="w-full shrink-0 snap-center h-56 bg-gradient-to-br from-accent-200 to-accent-400 flex items-center justify-center text-white/70 text-sm">รูปสถานที่ 2</div>
+    </div>
+    <div class="flex justify-center gap-1.5 -mt-4 relative z-10">
+      <span class="w-2 h-2 rounded-full bg-white shadow"></span>
+      <span class="w-2 h-2 rounded-full bg-white/50"></span>
+    </div>
+
+    <div class="px-4 py-4">
+      <span class="chip bg-primary-50 text-primary-700">ทะเล/ชายหาด</span>
+      <h1 class="text-xl font-bold text-neutral-900 mt-2">หาดทับสะแก</h1>
+      <p class="text-sm text-neutral-500 mt-1">📍 ต.ทับสะแก อ.ทับสะแก จ.ประจวบคีรีขันธ์</p>
+
+      <div class="grid grid-cols-2 gap-2 mt-4">
+        <button class="bg-primary-600 text-white rounded-lg py-2.5 text-sm font-medium flex items-center justify-center gap-1.5"><span>🧭</span>นำทาง</button>
+        <button class="bg-white border border-neutral-200 text-neutral-700 rounded-lg py-2.5 text-sm font-medium flex items-center justify-center gap-1.5"><span>🔗</span>แชร์</button>
+      </div>
+
+      <h2 class="font-semibold text-neutral-800 mt-6 mb-1.5">เกี่ยวกับสถานที่</h2>
+      <div class="space-y-3 text-[15px] leading-relaxed text-neutral-700">
+        <p>หาดทับสะแกเป็นชายหาดที่เงียบสงบ ทอดยาวเลียบอ่าวไทย เหมาะแก่การพักผ่อนและชมพระอาทิตย์ขึ้นยามเช้า</p>
+        <p>บริเวณริมหาดมีร้านอาหารทะเลและที่พักให้บริการ เดินทางสะดวกจากตัวอำเภอเพียงไม่กี่นาที</p>
+      </div>
+
+      <!-- ข้อมูลเสริม -->
+      <div class="mt-4 bg-primary-50 rounded-lg p-3 space-y-1.5 text-sm">
+        <div class="flex gap-2"><span>🕒</span><span class="text-neutral-700">เปิดตลอด 24 ชม. · ช่วงแนะนำ 05:30–08:00</span></div>
+        <div class="flex gap-2"><span>🅿️</span><span class="text-neutral-700">มีที่จอดรถ · เข้าชมฟรี</span></div>
+      </div>
+
+      <h2 class="font-semibold text-neutral-800 mt-6 mb-2">แผนที่</h2>
+      <div class="h-44 rounded-lg bg-neutral-200 border border-neutral-300 flex items-center justify-center text-neutral-500 text-sm">
+        🗺️ แผนที่ (Leaflet / OpenStreetMap)
+      </div>
+
+      <!-- ใกล้เคียง -->
+      <h2 class="font-semibold text-neutral-800 mt-6 mb-3">ที่เที่ยวใกล้เคียง</h2>
+      <div class="flex gap-3 overflow-x-auto no-scrollbar -mx-4 px-4">
+        <a href="tourism-detail.html" class="w-32 shrink-0 rounded-lg overflow-hidden shadow-sm border border-neutral-200 bg-white">
+          <div class="h-20 bg-gradient-to-br from-accent-200 to-accent-400"></div>
+          <div class="p-2"><h3 class="text-sm font-medium text-neutral-800 truncate">หาดวนกร</h3></div>
+        </a>
+        <a href="tourism-detail.html" class="w-32 shrink-0 rounded-lg overflow-hidden shadow-sm border border-neutral-200 bg-white">
+          <div class="h-20 bg-gradient-to-br from-primary-200 to-primary-400"></div>
+          <div class="p-2"><h3 class="text-sm font-medium text-neutral-800 truncate">สวนมะพร้าวชุมชน</h3></div>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sticky bottom-0 z-20 bg-white border-t border-neutral-200 flex items-stretch">
+      <a href="index.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🏠</span><span class="text-[11px]">หน้าแรก</span></a>
+      <a href="news.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">📰</span><span class="text-[11px]">ข่าว</span></a>
+      <a href="shops.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🛍️</span><span class="text-[11px]">ร้านค้า</span></a>
+      <a href="tourism.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-primary-600"><span class="text-xl">🏖️</span><span class="text-[11px] font-medium">เที่ยว</span></a>
+      <a href="login.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">👤</span><span class="text-[11px]">บัญชี</span></a>
+    </nav>
+
+  </div>
+</body>
+</html>

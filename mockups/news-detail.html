@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>เทศกาลมะพร้าวทับสะแก 2569 — ทับสะแกโฟกัส</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="theme.js"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center py-6 text-neutral-800">
+
+  <div class="phone mb-3 px-4"><p class="text-xs text-neutral-600">Wireframe · หน้ารายละเอียดข่าว · มือถือ</p></div>
+
+  <div class="phone bg-neutral-50 shadow-lg overflow-hidden" style="border-radius: var(--radius-xl);">
+
+    <!-- Header โปร่งใสทับรูป -->
+    <header class="sticky top-0 z-20 bg-primary-600 text-white" style="height: var(--header-h);">
+      <div class="h-full px-2 flex items-center justify-between">
+        <a href="news.html" class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-xl">‹</a>
+        <div class="flex items-center gap-1">
+          <button class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-lg">🔗</button>
+          <button class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-lg">♡</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- รูปปก -->
+    <div class="h-52 bg-gradient-to-br from-primary-300 to-primary-500 flex items-center justify-center text-white/70 text-sm">รูปปกข่าว</div>
+
+    <!-- เนื้อหา -->
+    <article class="px-4 py-5">
+      <span class="chip bg-accent-50 text-accent-700">กิจกรรม</span>
+      <h1 class="text-xl font-bold text-neutral-900 mt-3 leading-snug">เทศกาลมะพร้าวทับสะแก ประจำปี 2569</h1>
+
+      <!-- meta -->
+      <div class="flex items-center gap-2 mt-3 pb-4 border-b border-neutral-200">
+        <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-sm">ท</div>
+        <div class="text-xs leading-tight">
+          <div class="font-medium text-neutral-700">ทีมงานทับสะแกโฟกัส</div>
+          <div class="text-neutral-400">2 มิ.ย. 2569 · 👁 1,204 ครั้ง</div>
+        </div>
+      </div>
+
+      <!-- กล่องข้อมูลกิจกรรม -->
+      <div class="mt-4 bg-primary-50 rounded-lg p-3 space-y-1.5 text-sm">
+        <div class="flex gap-2"><span>📅</span><span class="text-neutral-700">15–17 มิถุนายน 2569</span></div>
+        <div class="flex gap-2"><span>📍</span><span class="text-neutral-700">ลานหน้าที่ว่าการอำเภอทับสะแก</span></div>
+        <div class="flex gap-2"><span>🕒</span><span class="text-neutral-700">10:00 – 21:00 น.</span></div>
+      </div>
+
+      <!-- เนื้อความ -->
+      <div class="mt-4 space-y-3 text-[15px] leading-relaxed text-neutral-700">
+        <p>อำเภอทับสะแกขอเชิญชวนทุกท่านร่วมงานเทศกาลมะพร้าวประจำปี ซึ่งจัดขึ้นเพื่อส่งเสริมผลผลิตท้องถิ่นและการท่องเที่ยวของชุมชน</p>
+        <p>ภายในงานพบกับการออกร้านอาหารพื้นบ้าน ผลิตภัณฑ์แปรรูปจากมะพร้าว การแสดงวัฒนธรรม และตลาดนัดชุมชนริมทะเลตลอดสามวัน</p>
+        <p>นอกจากนี้ยังมีกิจกรรมประกวดอาหารจากมะพร้าว และการสาธิตวิถีชีวิตชาวสวนมะพร้าวให้นักท่องเที่ยวได้สัมผัสอย่างใกล้ชิด</p>
+      </div>
+
+      <!-- แผนที่ -->
+      <h2 class="font-semibold text-neutral-800 mt-6 mb-2">แผนที่</h2>
+      <div class="h-40 rounded-lg bg-neutral-200 border border-neutral-300 flex items-center justify-center text-neutral-500 text-sm">
+        🗺️ แผนที่ (Leaflet / OpenStreetMap)
+      </div>
+    </article>
+
+    <!-- ข่าวที่เกี่ยวข้อง -->
+    <section class="px-4 pb-6">
+      <h2 class="font-semibold text-neutral-800 mb-3">ข่าวที่เกี่ยวข้อง</h2>
+      <a href="news-detail.html" class="flex gap-3 bg-white rounded-lg shadow-sm border border-neutral-200 p-2.5">
+        <div class="w-16 h-16 rounded-md bg-gradient-to-br from-accent-200 to-accent-400 shrink-0"></div>
+        <div class="min-w-0">
+          <h3 class="font-medium text-sm text-neutral-800 leading-snug line-clamp-2">ตลาดนัดชุมชนทุกเย็นวันศุกร์ หน้าที่ว่าการอำเภอ</h3>
+          <p class="text-xs text-neutral-400 mt-1">30 พ.ค. 2569</p>
+        </div>
+      </a>
+    </section>
+
+    <!-- Bottom Nav -->
+    <nav class="sticky bottom-0 z-20 bg-white border-t border-neutral-200 flex items-stretch">
+      <a href="index.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🏠</span><span class="text-[11px]">หน้าแรก</span></a>
+      <a href="news.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-primary-600"><span class="text-xl">📰</span><span class="text-[11px] font-medium">ข่าว</span></a>
+      <a href="shops.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🛍️</span><span class="text-[11px]">ร้านค้า</span></a>
+      <a href="tourism.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🏖️</span><span class="text-[11px]">เที่ยว</span></a>
+      <a href="login.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">👤</span><span class="text-[11px]">บัญชี</span></a>
+    </nav>
+
+  </div>
+</body>
+</html>

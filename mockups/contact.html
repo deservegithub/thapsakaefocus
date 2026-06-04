@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ติดต่อเรา — ทับสะแกโฟกัส</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="theme.js"></script>
+  <style> body { background: var(--color-neutral-50); } .field { width:100%; border:1px solid var(--color-neutral-300); border-radius:var(--radius-md); padding:.6rem .8rem; font-size:.9rem; outline:none; } .field:focus{ border-color:var(--color-primary-500);} </style>
+</head>
+<body class="min-h-screen text-neutral-800">
+
+  <header class="sticky top-0 z-30 bg-white border-b border-neutral-200">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index-desktop.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-lg bg-primary-600 text-white flex items-center justify-center text-lg">🌊</div>
+        <div class="font-bold text-primary-700">ทับสะแกโฟกัส</div>
+      </a>
+      <div class="flex items-center text-sm rounded-md border border-neutral-200 overflow-hidden">
+        <button class="px-2.5 py-1.5 bg-primary-600 text-white font-medium">TH</button>
+        <button class="px-2.5 py-1.5 text-neutral-500">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-10">
+    <p class="text-sm text-neutral-500 mb-2"><a href="index-desktop.html">หน้าแรก</a> › ติดต่อเรา</p>
+    <h1 class="text-3xl font-bold mb-2">ติดต่อเรา</h1>
+    <p class="text-neutral-500 mb-8">มีข้อเสนอแนะ แจ้งข้อมูลผิดพลาด อยากลงข้อมูลร้านค้า หรือขอใช้สิทธิข้อมูลส่วนบุคคล — ติดต่อได้เลย</p>
+
+    <div class="grid md:grid-cols-5 gap-8">
+      <!-- ฟอร์ม -->
+      <form class="md:col-span-3 bg-white rounded-xl border border-neutral-200 p-6 space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="block text-sm font-medium text-neutral-600 mb-1.5">ชื่อ</label><input class="field" placeholder="ชื่อของคุณ" /></div>
+          <div><label class="block text-sm font-medium text-neutral-600 mb-1.5">อีเมล</label><input class="field" type="email" placeholder="you@email.com" /></div>
+        </div>
+        <div><label class="block text-sm font-medium text-neutral-600 mb-1.5">เรื่อง</label>
+          <select class="field"><option>ข้อเสนอแนะทั่วไป</option><option>แจ้งข้อมูลผิดพลาด</option><option>ขอลงข้อมูลร้านค้า</option><option>ขอใช้สิทธิข้อมูลส่วนบุคคล (PDPA)</option></select>
+        </div>
+        <div><label class="block text-sm font-medium text-neutral-600 mb-1.5">ข้อความ</label><textarea class="field" rows="5" placeholder="รายละเอียด…"></textarea></div>
+        <button class="w-full bg-primary-600 text-white rounded-lg py-2.5 font-medium hover:bg-primary-700">ส่งข้อความ</button>
+      </form>
+
+      <!-- ช่องทาง -->
+      <div class="md:col-span-2 space-y-4">
+        <div class="bg-white rounded-xl border border-neutral-200 p-5 space-y-3 text-sm">
+          <div class="flex gap-3"><span class="text-lg">📧</span><div><div class="font-medium text-neutral-700">อีเมล</div><a class="text-primary-600">hello@thapsakaefocus.com</a></div></div>
+          <div class="flex gap-3"><span class="text-lg">💬</span><div><div class="font-medium text-neutral-700">LINE Official</div><span class="text-neutral-500">@thapsakaefocus</span></div></div>
+          <div class="flex gap-3"><span class="text-lg">📘</span><div><div class="font-medium text-neutral-700">Facebook</div><span class="text-neutral-500">ทับสะแกโฟกัส</span></div></div>
+          <div class="flex gap-3"><span class="text-lg">📍</span><div><div class="font-medium text-neutral-700">พื้นที่ให้บริการ</div><span class="text-neutral-500">อำเภอทับสะแก จ.ประจวบคีรีขันธ์</span></div></div>
+        </div>
+        <div class="bg-primary-50 rounded-xl border border-primary-100 p-5 text-sm text-primary-800">
+          <div class="font-semibold mb-1">เจ้าของร้านค้า?</div>
+          <p class="text-primary-700/80">อนาคตจะเปิดให้ร้านค้าลงทะเบียนและแก้ไขข้อมูลเองได้ ตอนนี้ส่งข้อมูลมาให้ทีมงานช่วยลงให้ก่อน</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-4 mt-10 pt-6 border-t border-neutral-200 text-sm">
+      <a href="terms.html" class="text-primary-600 font-medium">เงื่อนไขการใช้บริการ ›</a>
+      <a href="privacy.html" class="text-primary-600 font-medium">นโยบายความเป็นส่วนตัว ›</a>
+    </div>
+  </main>
+
+  <footer class="bg-neutral-800 text-neutral-400 mt-8"><div class="max-w-5xl mx-auto px-6 py-6 text-xs">© 2569 thapsakaefocus.com · แพลตฟอร์มชุมชนเชิงพาณิชย์</div></footer>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ทับสะแกโฟกัส — หน้าแรก</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="theme.js"></script>
+</head>
+
+<body class="min-h-screen flex flex-col items-center py-6 text-neutral-800">
+
+  <div class="phone mb-3 px-4">
+    <p class="text-xs text-neutral-600">Wireframe · หน้าแรก · มือถือ · กดลิงก์เพื่อข้ามหน้าได้</p>
+  </div>
+
+  <div class="phone bg-neutral-50 shadow-lg overflow-hidden" style="border-radius: var(--radius-xl);">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-20 bg-primary-600 text-white" style="height: var(--header-h);">
+      <div class="h-full px-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-md bg-white/15 flex items-center justify-center text-lg">🌊</div>
+          <div class="leading-tight">
+            <div class="font-bold text-base">ทับสะแกโฟกัส</div>
+            <div class="text-[10px] text-primary-100 -mt-0.5">ศูนย์รวมข้อมูลอำเภอทับสะแก</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-1">
+          <button class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-xl" aria-label="ค้นหา">🔍</button>
+          <button class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-xl" aria-label="เมนู">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero + ค้นหา -->
+    <section class="bg-primary-600 text-white px-4 pb-6 pt-1">
+      <h1 class="text-xl font-semibold leading-snug">ทุกเรื่องทับสะแก<br/>อยู่ในที่เดียว</h1>
+      <p class="text-sm text-primary-100 mt-1">ข่าวสาร ร้านค้า และที่เที่ยว ครบในแอปเดียว</p>
+      <div class="mt-4 bg-white rounded-lg shadow-md flex items-center gap-2 px-3 py-2.5">
+        <span class="text-neutral-400 text-lg">🔍</span>
+        <input type="text" placeholder="ค้นหาข่าว ร้านค้า สถานที่…" class="flex-1 text-sm text-neutral-700 placeholder:text-neutral-400 outline-none bg-transparent" />
+      </div>
+    </section>
+
+    <!-- 3 หมวดหลัก -->
+    <section class="px-4 -mt-4">
+      <div class="grid grid-cols-3 gap-3">
+        <a href="news.html" class="bg-white rounded-lg shadow-sm border border-neutral-200 p-3 flex flex-col items-center gap-1 active:scale-95 transition">
+          <span class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-2xl">📰</span>
+          <span class="text-xs font-medium text-neutral-700">ข่าวสาร</span>
+        </a>
+        <a href="shops.html" class="bg-white rounded-lg shadow-sm border border-neutral-200 p-3 flex flex-col items-center gap-1 active:scale-95 transition">
+          <span class="w-11 h-11 rounded-full bg-accent-50 flex items-center justify-center text-2xl">🛍️</span>
+          <span class="text-xs font-medium text-neutral-700">ร้านค้า</span>
+        </a>
+        <a href="tourism.html" class="bg-white rounded-lg shadow-sm border border-neutral-200 p-3 flex flex-col items-center gap-1 active:scale-95 transition">
+          <span class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-2xl">🏖️</span>
+          <span class="text-xs font-medium text-neutral-700">ท่องเที่ยว</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ข่าวล่าสุด -->
+    <section class="mt-7 px-4">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-semibold text-neutral-800">ข่าวล่าสุด</h2>
+        <a href="news.html" class="text-sm text-primary-600 font-medium">ดูทั้งหมด ›</a>
+      </div>
+
+      <a href="news-detail.html" class="block bg-white rounded-lg shadow-sm border border-neutral-200 overflow-hidden mb-3">
+        <div class="h-40 bg-gradient-to-br from-primary-200 to-primary-400 flex items-center justify-center text-white/70 text-sm">รูปปกข่าว</div>
+        <div class="p-3">
+          <span class="chip bg-accent-50 text-accent-700">กิจกรรม</span>
+          <h3 class="font-semibold text-neutral-800 mt-2 leading-snug">เทศกาลมะพร้าวทับสะแก ประจำปี 2569</h3>
+          <p class="text-sm text-neutral-600 mt-1 line-clamp-2">รวมของดีของอำเภอ ออกร้านอาหารพื้นบ้าน การแสดงวัฒนธรรม และตลาดนัดชุมชนริมทะเล…</p>
+          <p class="text-xs text-neutral-400 mt-2">2 มิ.ย. 2569 · 👁 1,204</p>
+        </div>
+      </a>
+
+      <a href="news-detail.html" class="flex gap-3 bg-white rounded-lg shadow-sm border border-neutral-200 p-2.5 mb-2.5">
+        <div class="w-20 h-20 rounded-md bg-gradient-to-br from-neutral-200 to-neutral-300 shrink-0 flex items-center justify-center text-neutral-400 text-xs">รูป</div>
+        <div class="min-w-0">
+          <span class="chip bg-primary-50 text-primary-700">ประกาศ</span>
+          <h3 class="font-medium text-sm text-neutral-800 mt-1 leading-snug line-clamp-2">ประกาศปิดปรับปรุงถนนเส้นเลียบชายหาดชั่วคราว</h3>
+          <p class="text-xs text-neutral-400 mt-1">1 มิ.ย. 2569</p>
+        </div>
+      </a>
+      <a href="news-detail.html" class="flex gap-3 bg-white rounded-lg shadow-sm border border-neutral-200 p-2.5">
+        <div class="w-20 h-20 rounded-md bg-gradient-to-br from-neutral-200 to-neutral-300 shrink-0 flex items-center justify-center text-neutral-400 text-xs">รูป</div>
+        <div class="min-w-0">
+          <span class="chip bg-accent-50 text-accent-700">กิจกรรม</span>
+          <h3 class="font-medium text-sm text-neutral-800 mt-1 leading-snug line-clamp-2">ตลาดนัดชุมชนทุกเย็นวันศุกร์ หน้าที่ว่าการอำเภอ</h3>
+          <p class="text-xs text-neutral-400 mt-1">30 พ.ค. 2569</p>
+        </div>
+      </a>
+    </section>
+
+    <!-- ร้านค้าแนะนำ -->
+    <section class="mt-7">
+      <div class="flex items-center justify-between mb-3 px-4">
+        <h2 class="text-lg font-semibold text-neutral-800">ร้านค้าแนะนำ</h2>
+        <a href="shops.html" class="text-sm text-primary-600 font-medium">ดูทั้งหมด ›</a>
+      </div>
+      <div class="flex gap-3 overflow-x-auto no-scrollbar px-4 pb-1">
+        <a href="shop-detail.html" class="w-40 shrink-0 bg-white rounded-lg shadow-sm border border-neutral-200 overflow-hidden">
+          <div class="h-24 bg-gradient-to-br from-accent-200 to-accent-400 flex items-center justify-center text-white/70 text-xs">รูปร้าน</div>
+          <div class="p-2.5">
+            <h3 class="font-medium text-sm text-neutral-800 truncate">ครัวริมเล ทับสะแก</h3>
+            <p class="text-xs text-neutral-500 mt-0.5">ร้านอาหาร · อาหารทะเล</p>
+            <p class="text-xs text-neutral-400 mt-1">📍 ต.ทับสะแก</p>
+          </div>
+        </a>
+        <a href="shop-detail.html" class="w-40 shrink-0 bg-white rounded-lg shadow-sm border border-neutral-200 overflow-hidden">
+          <div class="h-24 bg-gradient-to-br from-primary-200 to-primary-400 flex items-center justify-center text-white/70 text-xs">รูปร้าน</div>
+          <div class="p-2.5">
+            <h3 class="font-medium text-sm text-neutral-800 truncate">คาเฟ่มะพร้าวอ่อน</h3>
+            <p class="text-xs text-neutral-500 mt-0.5">คาเฟ่ · ของหวาน</p>
+            <p class="text-xs text-neutral-400 mt-1">📍 ต.อ่างทอง</p>
+          </div>
+        </a>
+        <a href="shop-detail.html" class="w-40 shrink-0 bg-white rounded-lg shadow-sm border border-neutral-200 overflow-hidden">
+          <div class="h-24 bg-gradient-to-br from-neutral-200 to-neutral-300 flex items-center justify-center text-neutral-400 text-xs">รูปร้าน</div>
+          <div class="p-2.5">
+            <h3 class="font-medium text-sm text-neutral-800 truncate">โฮมสเตย์ชายทะเล</h3>
+            <p class="text-xs text-neutral-500 mt-0.5">ที่พัก</p>
+            <p class="text-xs text-neutral-400 mt-1">📍 ต.แสงอรุณ</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ที่เที่ยวแนะนำ -->
+    <section class="mt-7 px-4">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-semibold text-neutral-800">ที่เที่ยวแนะนำ</h2>
+        <a href="tourism.html" class="text-sm text-primary-600 font-medium">ดูทั้งหมด ›</a>
+      </div>
+      <a href="tourism-detail.html" class="block relative rounded-lg overflow-hidden shadow-sm mb-3 h-44">
+        <div class="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-primary-700/20 to-transparent"></div>
+        <div class="absolute inset-0 -z-0 bg-gradient-to-br from-primary-300 to-primary-500 flex items-center justify-center text-white/60 text-sm">รูปสถานที่</div>
+        <div class="absolute bottom-0 p-3 text-white">
+          <h3 class="font-semibold text-base">หาดทับสะแก</h3>
+          <p class="text-xs text-white/80 mt-0.5">📍 ต.ทับสะแก · ชายหาดเงียบสงบ ชมพระอาทิตย์ขึ้น</p>
+        </div>
+      </a>
+      <div class="grid grid-cols-2 gap-3">
+        <a href="tourism-detail.html" class="rounded-lg overflow-hidden shadow-sm border border-neutral-200 bg-white">
+          <div class="h-24 bg-gradient-to-br from-accent-200 to-accent-400 flex items-center justify-center text-white/70 text-xs">รูป</div>
+          <div class="p-2.5"><h3 class="font-medium text-sm text-neutral-800 truncate">หาดวนกร</h3><p class="text-xs text-neutral-400 mt-0.5">ชายหาด/ป่าสน</p></div>
+        </a>
+        <a href="tourism-detail.html" class="rounded-lg overflow-hidden shadow-sm border border-neutral-200 bg-white">
+          <div class="h-24 bg-gradient-to-br from-primary-200 to-primary-400 flex items-center justify-center text-white/70 text-xs">รูป</div>
+          <div class="p-2.5"><h3 class="font-medium text-sm text-neutral-800 truncate">สวนมะพร้าว</h3><p class="text-xs text-neutral-400 mt-0.5">วิถีชุมชน</p></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer + ตัวนับออนไลน์ -->
+    <footer class="mt-8 bg-neutral-800 text-neutral-300 px-4 pt-6 pb-24">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-online opacity-60"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-online"></span>
+        </span>
+        <span class="text-sm text-neutral-200"><span class="font-semibold text-white">23</span> คนกำลังออนไลน์</span>
+      </div>
+      <div class="font-semibold text-white text-base mb-1">ทับสะแกโฟกัส</div>
+      <p class="text-xs text-neutral-400 leading-relaxed mb-4">ศูนย์กลางข้อมูลข่าวสาร ร้านค้า และการท่องเที่ยวของอำเภอทับสะแก จังหวัดประจวบคีรีขันธ์</p>
+      <div class="grid grid-cols-2 gap-y-2 text-sm">
+        <a href="news.html" class="text-neutral-300">ข่าวสาร</a>
+        <a class="text-neutral-300">เงื่อนไขการใช้บริการ</a>
+        <a href="shops.html" class="text-neutral-300">ร้านค้า</a>
+        <a class="text-neutral-300">ความเป็นส่วนตัว</a>
+        <a href="tourism.html" class="text-neutral-300">ท่องเที่ยว</a>
+        <a class="text-neutral-300">ติดต่อเรา</a>
+      </div>
+      <p class="text-[11px] text-neutral-500 mt-5">© 2569 thapsakaefocus.com</p>
+    </footer>
+
+    <!-- Bottom Nav -->
+    <nav class="sticky bottom-0 z-20 bg-white border-t border-neutral-200 flex items-stretch" style="margin-top:-80px;">
+      <a href="index.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-primary-600"><span class="text-xl">🏠</span><span class="text-[11px] font-medium">หน้าแรก</span></a>
+      <a href="news.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">📰</span><span class="text-[11px]">ข่าว</span></a>
+      <a href="shops.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🛍️</span><span class="text-[11px]">ร้านค้า</span></a>
+      <a href="tourism.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🏖️</span><span class="text-[11px]">เที่ยว</span></a>
+      <a href="login.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">👤</span><span class="text-[11px]">บัญชี</span></a>
+    </nav>
+
+  </div>
+
+  <p class="phone text-center text-xs text-neutral-500 mt-4 px-4">
+    Wireframe ความเที่ยงปานกลาง · สี/ฟอนต์จาก <code>tokens.css</code> · รูปเป็น placeholder
+  </p>
+
+</body>
+</html>

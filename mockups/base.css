@@ -1,0 +1,20 @@
+/* สไตล์พื้นฐานร่วมของทุกหน้า mockup */
+body {
+  font-family: var(--font-sans);
+  background: var(--color-neutral-200);
+}
+.phone { width: 100%; max-width: var(--container-max); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* component คลาสสั้น ๆ ให้มาร์กอัปอ่านง่าย */
+.chip {
+  display: inline-block; font-size: 11px; font-weight: 500;
+  padding: 2px 8px; border-radius: var(--radius-md);
+}
+.line-clamp-2 {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}

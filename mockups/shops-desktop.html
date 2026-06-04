@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ร้านค้าและบริการ — ทับสะแกโฟกัส (เดสก์ท็อป)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="theme.js"></script>
+  <style> body { background: var(--color-neutral-50); } </style>
+</head>
+<body class="min-h-screen text-neutral-800">
+
+  <!-- Top Nav -->
+  <header class="sticky top-0 z-30 bg-white border-b border-neutral-200">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center gap-6">
+      <a href="index-desktop.html" class="flex items-center gap-2 shrink-0">
+        <div class="w-9 h-9 rounded-lg bg-primary-600 text-white flex items-center justify-center text-lg">🌊</div>
+        <div class="font-bold text-primary-700">ทับสะแกโฟกัส</div>
+      </a>
+      <nav class="flex items-center gap-1 ml-2">
+        <a href="index-desktop.html" class="px-3 py-2 rounded-md text-sm font-medium text-neutral-600 hover:bg-neutral-50">หน้าแรก</a>
+        <a class="px-3 py-2 rounded-md text-sm font-medium text-neutral-600 hover:bg-neutral-50">ข่าวสาร</a>
+        <a class="px-3 py-2 rounded-md text-sm font-medium text-primary-700 bg-primary-50">ร้านค้า</a>
+        <a class="px-3 py-2 rounded-md text-sm font-medium text-neutral-600 hover:bg-neutral-50">ท่องเที่ยว</a>
+      </nav>
+      <div class="ml-auto flex items-center gap-3">
+        <div class="flex items-center text-sm rounded-md border border-neutral-200 overflow-hidden">
+          <button class="px-2.5 py-1.5 bg-primary-600 text-white font-medium">TH</button>
+          <button class="px-2.5 py-1.5 text-neutral-500 hover:bg-neutral-50">EN</button>
+        </div>
+        <a href="login.html" class="px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-medium hover:bg-primary-700">เข้าสู่ระบบ</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto px-6 py-8">
+    <h1 class="text-2xl font-bold mb-1">ร้านค้าและบริการ</h1>
+    <p class="text-neutral-500 mb-6">รวมร้านอาหาร คาเฟ่ ที่พัก และของฝากในอำเภอทับสะแก</p>
+
+    <div class="grid grid-cols-12 gap-6">
+
+      <!-- Sidebar filter -->
+      <aside class="col-span-3">
+        <div class="bg-white rounded-xl border border-neutral-200 p-4 sticky top-24">
+          <div class="flex items-center gap-2 bg-neutral-50 border border-neutral-200 rounded-lg px-3 py-2 mb-4">
+            <span class="text-neutral-400">🔍</span>
+            <input class="bg-transparent outline-none text-sm flex-1" placeholder="ค้นหาร้านค้า…" />
+          </div>
+          <h3 class="font-semibold text-sm text-neutral-700 mb-2">หมวดหมู่</h3>
+          <div class="space-y-1.5 text-sm">
+            <label class="flex items-center gap-2"><input type="radio" name="cat" checked class="accent-primary-600" /> ทั้งหมด</label>
+            <label class="flex items-center gap-2"><input type="radio" name="cat" class="accent-primary-600" /> ร้านอาหาร</label>
+            <label class="flex items-center gap-2"><input type="radio" name="cat" class="accent-primary-600" /> คาเฟ่</label>
+            <label class="flex items-center gap-2"><input type="radio" name="cat" class="accent-primary-600" /> ที่พัก</label>
+            <label class="flex items-center gap-2"><input type="radio" name="cat" class="accent-primary-600" /> ของฝาก</label>
+            <label class="flex items-center gap-2"><input type="radio" name="cat" class="accent-primary-600" /> บริการ</label>
+          </div>
+          <h3 class="font-semibold text-sm text-neutral-700 mt-4 mb-2">ตำบล</h3>
+          <div class="space-y-1.5 text-sm">
+            <label class="flex items-center gap-2"><input type="checkbox" class="accent-primary-600" /> ทับสะแก</label>
+            <label class="flex items-center gap-2"><input type="checkbox" class="accent-primary-600" /> อ่างทอง</label>
+            <label class="flex items-center gap-2"><input type="checkbox" class="accent-primary-600" /> ห้วยยาง</label>
+            <label class="flex items-center gap-2"><input type="checkbox" class="accent-primary-600" /> แสงอรุณ</label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- รายการ + แผนที่ -->
+      <main class="col-span-9">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-sm text-neutral-500">พบ 24 ร้าน</span>
+          <select class="text-sm border border-neutral-200 rounded-lg px-3 py-1.5 bg-white">
+            <option>เรียง: ล่าสุด</option><option>เรียง: ชื่อ A–Z</option>
+          </select>
+        </div>
+
+        <!-- แผนที่ -->
+        <div class="h-56 rounded-xl bg-neutral-200 border border-neutral-300 flex items-center justify-center text-neutral-500 mb-6">🗺️ แผนที่รวมหมุดร้านค้า (Leaflet / OpenStreetMap)</div>
+
+        <!-- grid ร้าน -->
+        <div class="grid grid-cols-3 gap-5">
+          <a href="shop-detail.html" class="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden hover:shadow-md transition">
+            <div class="h-36 bg-gradient-to-br from-accent-200 to-accent-400"></div>
+            <div class="p-3"><span class="chip bg-primary-50 text-primary-700">ร้านอาหาร</span><h3 class="font-semibold text-neutral-800 mt-1.5">ครัวริมเล ทับสะแก</h3><p class="text-sm text-neutral-500 mt-0.5">📍 ต.ทับสะแก · 10:00–21:00</p></div>
+          </a>
+          <a href="shop-detail.html" class="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden hover:shadow-md transition">
+            <div class="h-36 bg-gradient-to-br from-primary-200 to-primary-400"></div>
+            <div class="p-3"><span class="chip bg-accent-50 text-accent-700">คาเฟ่</span><h3 class="font-semibold text-neutral-800 mt-1.5">คาเฟ่มะพร้าวอ่อน</h3><p class="text-sm text-neutral-500 mt-0.5">📍 ต.อ่างทอง · 08:00–18:00</p></div>
+          </a>
+          <a href="shop-detail.html" class="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden hover:shadow-md transition">
+            <div class="h-36 bg-gradient-to-br from-neutral-200 to-neutral-300"></div>
+            <div class="p-3"><span class="chip bg-primary-50 text-primary-700">ที่พัก</span><h3 class="font-semibold text-neutral-800 mt-1.5">โฮมสเตย์ชายทะเล</h3><p class="text-sm text-neutral-500 mt-0.5">📍 ต.แสงอรุณ</p></div>
+          </a>
+          <a href="shop-detail.html" class="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden hover:shadow-md transition">
+            <div class="h-36 bg-gradient-to-br from-accent-200 to-accent-400"></div>
+            <div class="p-3"><span class="chip bg-accent-50 text-accent-700">ของฝาก</span><h3 class="font-semibold text-neutral-800 mt-1.5">ของฝากแม่สมจิตร</h3><p class="text-sm text-neutral-500 mt-0.5">📍 ต.ทับสะแก</p></div>
+          </a>
+          <a href="shop-detail.html" class="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden hover:shadow-md transition">
+            <div class="h-36 bg-gradient-to-br from-primary-200 to-primary-400"></div>
+            <div class="p-3"><span class="chip bg-primary-50 text-primary-700">ร้านอาหาร</span><h3 class="font-semibold text-neutral-800 mt-1.5">ก๋วยเตี๋ยวเรือป้านิด</h3><p class="text-sm text-neutral-500 mt-0.5">📍 ต.ห้วยยาง</p></div>
+          </a>
+          <a href="shop-detail.html" class="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden hover:shadow-md transition">
+            <div class="h-36 bg-gradient-to-br from-neutral-200 to-neutral-300"></div>
+            <div class="p-3"><span class="chip bg-accent-50 text-accent-700">บริการ</span><h3 class="font-semibold text-neutral-800 mt-1.5">อู่ซ่อมรถพี่เอก</h3><p class="text-sm text-neutral-500 mt-0.5">📍 ต.ทับสะแก</p></div>
+          </a>
+        </div>
+
+        <!-- pagination -->
+        <div class="flex justify-center items-center gap-1 mt-8 text-sm">
+          <button class="w-9 h-9 rounded-md border border-neutral-200 bg-white">‹</button>
+          <button class="w-9 h-9 rounded-md bg-primary-600 text-white font-medium">1</button>
+          <button class="w-9 h-9 rounded-md border border-neutral-200 bg-white">2</button>
+          <button class="w-9 h-9 rounded-md border border-neutral-200 bg-white">3</button>
+          <button class="w-9 h-9 rounded-md border border-neutral-200 bg-white">›</button>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <footer class="bg-neutral-800 text-neutral-400 mt-8"><div class="max-w-6xl mx-auto px-6 py-6 text-xs">© 2569 thapsakaefocus.com</div></footer>
+</body>
+</html>

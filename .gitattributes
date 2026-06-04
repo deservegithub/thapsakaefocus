@@ -1,0 +1,11 @@
+# เก็บ line ending เป็น LF ใน repo (Windows → checkout ได้ตามปกติ, Vercel/Linux build ตรงกัน)
+* text=auto eol=lf
+
+# ไฟล์ binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary

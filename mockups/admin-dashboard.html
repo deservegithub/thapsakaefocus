@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — แดชบอร์ด · ทับสะแกโฟกัส</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="theme.js"></script>
+  <style> body { background: var(--color-neutral-100); } </style>
+</head>
+<body class="min-h-screen text-neutral-800 flex">
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="w-60 bg-neutral-900 text-neutral-300 min-h-screen flex flex-col shrink-0">
+    <div class="px-5 h-16 flex items-center gap-2 border-b border-neutral-800">
+      <div class="w-8 h-8 rounded-md bg-primary-600 text-white flex items-center justify-center">🌊</div>
+      <div><div class="font-semibold text-white text-sm">ทับสะแกโฟกัส</div><div class="text-[10px] text-neutral-500">ระบบจัดการ</div></div>
+    </div>
+    <nav class="flex-1 p-3 space-y-1 text-sm">
+      <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary-600 text-white font-medium"><span>📊</span> แดชบอร์ด</a>
+      <a href="admin-news-list.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-neutral-800"><span>📰</span> ข่าวสาร</a>
+      <a href="admin-news-list.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-neutral-800"><span>🛍️</span> ร้านค้า</a>
+      <a href="admin-news-list.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-neutral-800"><span>🏖️</span> ท่องเที่ยว</a>
+      <div class="border-t border-neutral-800 my-2"></div>
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-neutral-800"><span>👥</span> สมาชิก</a>
+      <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-neutral-800"><span>⚙️</span> ตั้งค่า</a>
+    </nav>
+    <div class="p-3 border-t border-neutral-800">
+      <a href="index-desktop.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-neutral-800 text-sm"><span>↩</span> กลับสู่เว็บไซต์</a>
+    </div>
+  </aside>
+
+  <!-- ===== เนื้อหา ===== -->
+  <div class="flex-1 min-w-0">
+    <!-- top bar -->
+    <header class="h-16 bg-white border-b border-neutral-200 px-6 flex items-center justify-between">
+      <h1 class="font-semibold text-lg">แดชบอร์ด</h1>
+      <div class="flex items-center gap-3">
+        <button class="w-9 h-9 rounded-lg hover:bg-neutral-100 flex items-center justify-center">🔔</button>
+        <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-sm">A</div><span class="text-sm text-neutral-600">แอดมิน</span></div>
+      </div>
+    </header>
+
+    <main class="p-6">
+      <!-- stat cards -->
+      <div class="grid grid-cols-4 gap-5 mb-8">
+        <div class="bg-white rounded-xl border border-neutral-200 p-5"><div class="flex items-center justify-between"><span class="text-3xl">📰</span><span class="text-xs text-success font-medium">+3 สัปดาห์นี้</span></div><div class="text-2xl font-bold mt-3">42</div><div class="text-sm text-neutral-500">ข่าวสารทั้งหมด</div></div>
+        <div class="bg-white rounded-xl border border-neutral-200 p-5"><div class="flex items-center justify-between"><span class="text-3xl">🛍️</span><span class="text-xs text-success font-medium">+5 สัปดาห์นี้</span></div><div class="text-2xl font-bold mt-3">128</div><div class="text-sm text-neutral-500">ร้านค้า</div></div>
+        <div class="bg-white rounded-xl border border-neutral-200 p-5"><div class="flex items-center justify-between"><span class="text-3xl">🏖️</span><span class="text-xs text-neutral-400 font-medium">0 สัปดาห์นี้</span></div><div class="text-2xl font-bold mt-3">36</div><div class="text-sm text-neutral-500">สถานที่ท่องเที่ยว</div></div>
+        <div class="bg-white rounded-xl border border-neutral-200 p-5"><div class="flex items-center justify-between"><span class="text-3xl">🟢</span></div><div class="text-2xl font-bold mt-3">23</div><div class="text-sm text-neutral-500">ออนไลน์ตอนนี้</div></div>
+      </div>
+
+      <!-- quick actions -->
+      <div class="flex gap-3 mb-8">
+        <a href="admin-news-edit.html" class="px-4 py-2.5 rounded-lg bg-primary-600 text-white text-sm font-medium">+ เพิ่มข่าว</a>
+        <a href="admin-news-edit.html" class="px-4 py-2.5 rounded-lg bg-white border border-neutral-200 text-sm font-medium">+ เพิ่มร้านค้า</a>
+        <a href="admin-news-edit.html" class="px-4 py-2.5 rounded-lg bg-white border border-neutral-200 text-sm font-medium">+ เพิ่มสถานที่</a>
+      </div>
+
+      <!-- recent table -->
+      <div class="bg-white rounded-xl border border-neutral-200 overflow-hidden">
+        <div class="px-5 py-4 border-b border-neutral-100 flex items-center justify-between">
+          <h2 class="font-semibold">รายการแก้ไขล่าสุด</h2>
+          <a href="admin-news-list.html" class="text-sm text-primary-600">ดูทั้งหมด ›</a>
+        </div>
+        <table class="w-full text-sm">
+          <thead class="bg-neutral-50 text-neutral-500 text-left">
+            <tr><th class="px-5 py-3 font-medium">หัวข้อ</th><th class="px-5 py-3 font-medium">หมวด</th><th class="px-5 py-3 font-medium">สถานะ</th><th class="px-5 py-3 font-medium">แก้ไขล่าสุด</th></tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-100">
+            <tr><td class="px-5 py-3">เทศกาลมะพร้าวทับสะแก 2569</td><td class="px-5 py-3 text-neutral-500">ข่าว</td><td class="px-5 py-3"><span class="chip bg-green-50 text-success">เผยแพร่</span></td><td class="px-5 py-3 text-neutral-500">2 มิ.ย. 2569</td></tr>
+            <tr><td class="px-5 py-3">ครัวริมเล ทับสะแก</td><td class="px-5 py-3 text-neutral-500">ร้านค้า</td><td class="px-5 py-3"><span class="chip bg-green-50 text-success">เผยแพร่</span></td><td class="px-5 py-3 text-neutral-500">1 มิ.ย. 2569</td></tr>
+            <tr><td class="px-5 py-3">หาดวนกร</td><td class="px-5 py-3 text-neutral-500">ท่องเที่ยว</td><td class="px-5 py-3"><span class="chip bg-neutral-100 text-neutral-500">ฉบับร่าง</span></td><td class="px-5 py-3 text-neutral-500">31 พ.ค. 2569</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

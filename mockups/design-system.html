@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design System — ทับสะแกโฟกัส</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="theme.js"></script>
+  <style> body { background: var(--color-neutral-100); } </style>
+</head>
+<body class="min-h-screen text-neutral-800">
+
+  <div class="max-w-2xl mx-auto px-4 py-8">
+
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-primary-700">Design System</h1>
+      <p class="text-neutral-600 mt-1">ทับสะแกโฟกัส · ต้นฉบับสี/ตัวอักษร/คอมโพเนนต์ (อิง <code>tokens.css</code>)</p>
+      <a href="index.html" class="inline-block mt-3 text-sm text-primary-600 font-medium">‹ กลับไปดู wireframe</a>
+    </header>
+
+    <!-- สี -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-1">สี (Color)</h2>
+      <p class="text-sm text-neutral-500 mb-4">ทะเล (primary) · แดด/มะพร้าว (accent) · ทราย (neutral)</p>
+
+      <h3 class="text-sm font-medium text-neutral-600 mb-2">Primary — ทะเล</h3>
+      <div class="grid grid-cols-5 gap-2 mb-5">
+        <div><div class="h-14 rounded-md" style="background:var(--color-primary-50)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">50</p></div>
+        <div><div class="h-14 rounded-md" style="background:var(--color-primary-200)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">200</p></div>
+        <div><div class="h-14 rounded-md" style="background:var(--color-primary-400)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">400</p></div>
+        <div><div class="h-14 rounded-md ring-2 ring-offset-2 ring-primary-600" style="background:var(--color-primary-600)"></div><p class="text-[10px] text-center mt-1 font-medium text-neutral-700">600 ★</p></div>
+        <div><div class="h-14 rounded-md" style="background:var(--color-primary-800)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">800</p></div>
+      </div>
+
+      <h3 class="text-sm font-medium text-neutral-600 mb-2">Accent — แดด/มะพร้าว</h3>
+      <div class="grid grid-cols-5 gap-2 mb-5">
+        <div><div class="h-14 rounded-md" style="background:var(--color-accent-50)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">50</p></div>
+        <div><div class="h-14 rounded-md" style="background:var(--color-accent-200)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">200</p></div>
+        <div><div class="h-14 rounded-md" style="background:var(--color-accent-400)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">400</p></div>
+        <div><div class="h-14 rounded-md ring-2 ring-offset-2 ring-accent-500" style="background:var(--color-accent-500)"></div><p class="text-[10px] text-center mt-1 font-medium text-neutral-700">500 ★</p></div>
+        <div><div class="h-14 rounded-md" style="background:var(--color-accent-700)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">700</p></div>
+      </div>
+
+      <h3 class="text-sm font-medium text-neutral-600 mb-2">Neutral — ทราย</h3>
+      <div class="grid grid-cols-6 gap-2">
+        <div><div class="h-12 rounded-md border border-neutral-200" style="background:var(--color-neutral-0)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">0</p></div>
+        <div><div class="h-12 rounded-md" style="background:var(--color-neutral-100)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">100</p></div>
+        <div><div class="h-12 rounded-md" style="background:var(--color-neutral-300)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">300</p></div>
+        <div><div class="h-12 rounded-md" style="background:var(--color-neutral-500)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">500</p></div>
+        <div><div class="h-12 rounded-md" style="background:var(--color-neutral-700)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">700</p></div>
+        <div><div class="h-12 rounded-md" style="background:var(--color-neutral-900)"></div><p class="text-[10px] text-center mt-1 text-neutral-500">900</p></div>
+      </div>
+
+      <div class="flex gap-3 mt-5">
+        <div class="flex items-center gap-1.5 text-xs"><span class="w-3 h-3 rounded-full" style="background:var(--color-success)"></span>success</div>
+        <div class="flex items-center gap-1.5 text-xs"><span class="w-3 h-3 rounded-full" style="background:var(--color-warning)"></span>warning</div>
+        <div class="flex items-center gap-1.5 text-xs"><span class="w-3 h-3 rounded-full" style="background:var(--color-danger)"></span>danger</div>
+        <div class="flex items-center gap-1.5 text-xs"><span class="w-3 h-3 rounded-full" style="background:var(--color-online)"></span>online</div>
+      </div>
+    </section>
+
+    <!-- ตัวอักษร -->
+    <section class="mb-10 bg-white rounded-lg border border-neutral-200 p-5">
+      <h2 class="text-xl font-semibold mb-1">ตัวอักษร (Typography)</h2>
+      <p class="text-sm text-neutral-500 mb-4">IBM Plex Sans Thai · รองรับไทย+อังกฤษ</p>
+      <div class="space-y-2">
+        <p style="font-size:var(--text-3xl)" class="font-bold">หัวข้อใหญ่ 34 · Aa Bb 123</p>
+        <p style="font-size:var(--text-2xl)" class="font-bold">หัวข้อ 28 · Aa Bb 123</p>
+        <p style="font-size:var(--text-xl)" class="font-semibold">หัวข้อรอง 22 · Aa Bb 123</p>
+        <p style="font-size:var(--text-lg)" class="font-medium">ตัวใหญ่ 18 · Aa Bb 123</p>
+        <p style="font-size:var(--text-base)">เนื้อความปกติ 16 · ทับสะแกเป็นเมืองชายทะเล Aa Bb 123</p>
+        <p style="font-size:var(--text-sm)" class="text-neutral-600">ตัวเล็ก 14 · meta/คำอธิบาย</p>
+        <p style="font-size:var(--text-xs)" class="text-neutral-400">ตัวเล็กสุด 12 · ป้ายกำกับ</p>
+      </div>
+      <div class="flex gap-4 mt-4 text-sm text-neutral-500">
+        <span class="font-light">300 Light</span><span class="font-normal">400 Regular</span>
+        <span class="font-medium">500 Medium</span><span class="font-semibold">600 Semibold</span><span class="font-bold">700 Bold</span>
+      </div>
+    </section>
+
+    <!-- คอมโพเนนต์ -->
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">คอมโพเนนต์ (Components)</h2>
+
+      <!-- ปุ่ม -->
+      <div class="bg-white rounded-lg border border-neutral-200 p-5 mb-4">
+        <h3 class="text-sm font-medium text-neutral-600 mb-3">ปุ่ม (Button)</h3>
+        <div class="flex flex-wrap gap-2 items-center">
+          <button class="bg-primary-600 text-white rounded-lg px-4 py-2 text-sm font-medium">หลัก (Primary)</button>
+          <button class="bg-accent-500 text-white rounded-lg px-4 py-2 text-sm font-medium">เน้น CTA</button>
+          <button class="bg-white border border-neutral-300 text-neutral-700 rounded-lg px-4 py-2 text-sm font-medium">รอง (Outline)</button>
+          <button class="text-primary-600 px-3 py-2 text-sm font-medium">ลิงก์ (Ghost)</button>
+          <button class="bg-neutral-200 text-neutral-400 rounded-lg px-4 py-2 text-sm font-medium" disabled>ปิดใช้งาน</button>
+        </div>
+      </div>
+
+      <!-- chip -->
+      <div class="bg-white rounded-lg border border-neutral-200 p-5 mb-4">
+        <h3 class="text-sm font-medium text-neutral-600 mb-3">ป้ายหมวด (Chip / Tag)</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip bg-primary-600 text-white">เลือกอยู่</span>
+          <span class="chip bg-white border border-neutral-200 text-neutral-600">ตัวเลือก</span>
+          <span class="chip bg-primary-50 text-primary-700">ประกาศ</span>
+          <span class="chip bg-accent-50 text-accent-700">กิจกรรม</span>
+        </div>
+      </div>
+
+      <!-- input -->
+      <div class="bg-white rounded-lg border border-neutral-200 p-5 mb-4">
+        <h3 class="text-sm font-medium text-neutral-600 mb-3">ช่องค้นหา (Input)</h3>
+        <div class="bg-neutral-50 border border-neutral-200 rounded-lg flex items-center gap-2 px-3 py-2.5">
+          <span class="text-neutral-400 text-lg">🔍</span>
+          <input type="text" placeholder="ค้นหาข่าว ร้านค้า สถานที่…" class="flex-1 text-sm bg-transparent outline-none" />
+        </div>
+      </div>
+
+      <!-- การ์ด -->
+      <div class="bg-white rounded-lg border border-neutral-200 p-5">
+        <h3 class="text-sm font-medium text-neutral-600 mb-3">การ์ดเนื้อหา (Card)</h3>
+        <div class="max-w-xs bg-white rounded-lg shadow-sm border border-neutral-200 overflow-hidden">
+          <div class="h-28 bg-gradient-to-br from-primary-200 to-primary-400 flex items-center justify-center text-white/70 text-xs">รูปปก</div>
+          <div class="p-3">
+            <span class="chip bg-accent-50 text-accent-700">กิจกรรม</span>
+            <h4 class="font-semibold text-neutral-800 mt-2 leading-snug">หัวข้อการ์ดตัวอย่าง</h4>
+            <p class="text-sm text-neutral-600 mt-1 line-clamp-2">คำอธิบายย่อสองบรรทัด สำหรับแสดงในรายการข่าว/ร้านค้า/สถานที่…</p>
+            <p class="text-xs text-neutral-400 mt-2">2 มิ.ย. 2569</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- มุมโค้ง + เงา -->
+    <section class="mb-10 bg-white rounded-lg border border-neutral-200 p-5">
+      <h2 class="text-xl font-semibold mb-4">มุมโค้ง & เงา (Radius / Shadow)</h2>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="text-center"><div class="h-16 bg-primary-100" style="border-radius:var(--radius-md)"></div><p class="text-xs mt-1 text-neutral-500">radius-md</p></div>
+        <div class="text-center"><div class="h-16 bg-primary-100" style="border-radius:var(--radius-lg)"></div><p class="text-xs mt-1 text-neutral-500">radius-lg</p></div>
+        <div class="text-center"><div class="h-16 bg-primary-100" style="border-radius:var(--radius-xl)"></div><p class="text-xs mt-1 text-neutral-500">radius-xl</p></div>
+        <div class="text-center"><div class="h-16 bg-white" style="box-shadow:var(--shadow-sm)"></div><p class="text-xs mt-1 text-neutral-500">shadow-sm</p></div>
+        <div class="text-center"><div class="h-16 bg-white" style="box-shadow:var(--shadow-md)"></div><p class="text-xs mt-1 text-neutral-500">shadow-md</p></div>
+        <div class="text-center"><div class="h-16 bg-white" style="box-shadow:var(--shadow-lg)"></div><p class="text-xs mt-1 text-neutral-500">shadow-lg</p></div>
+      </div>
+    </section>
+
+    <p class="text-xs text-neutral-400 text-center pb-8">ค่าทั้งหมดมาจาก <code>tokens.css</code> — ยกไปใส่ Tailwind theme ในโปรเจกต์จริงได้</p>
+
+  </div>
+</body>
+</html>

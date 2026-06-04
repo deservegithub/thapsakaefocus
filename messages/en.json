@@ -1,0 +1,18 @@
+{
+  "common": {
+    "appName": "Thapsakae Focus",
+    "tagline": "Thapsakae district information hub"
+  },
+  "nav": {
+    "home": "Home",
+    "news": "News",
+    "shops": "Shops",
+    "tourism": "Travel",
+    "login": "Sign in"
+  },
+  "home": {
+    "title": "Everything Thapsakae, in one place",
+    "subtitle": "News, shops, and travel spots of Thapsakae district, Prachuap Khiri Khan",
+    "searchPlaceholder": "Search news, shops, places…"
+  }
+}

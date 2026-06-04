@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ครัวริมเล ทับสะแก — ทับสะแกโฟกัส</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="theme.js"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center py-6 text-neutral-800">
+
+  <div class="phone mb-3 px-4"><p class="text-xs text-neutral-600">Wireframe · หน้ารายละเอียดร้าน · มือถือ</p></div>
+
+  <div class="phone bg-neutral-50 shadow-lg overflow-hidden relative" style="border-radius: var(--radius-xl);">
+
+    <header class="sticky top-0 z-20 bg-primary-600 text-white" style="height: var(--header-h);">
+      <div class="h-full px-2 flex items-center justify-between">
+        <a href="shops.html" class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-xl">‹</a>
+        <div class="flex items-center gap-1">
+          <button class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-lg">🔗</button>
+          <button class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-lg">♡</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- แกลเลอรีรูป (เลื่อนแนวนอน) -->
+    <div class="flex overflow-x-auto no-scrollbar snap-x">
+      <div class="w-full shrink-0 snap-center h-56 bg-gradient-to-br from-accent-200 to-accent-400 flex items-center justify-center text-white/70 text-sm">รูปร้าน 1</div>
+      <div class="w-full shrink-0 snap-center h-56 bg-gradient-to-br from-primary-200 to-primary-400 flex items-center justify-center text-white/70 text-sm">รูปร้าน 2</div>
+      <div class="w-full shrink-0 snap-center h-56 bg-gradient-to-br from-neutral-200 to-neutral-300 flex items-center justify-center text-neutral-400 text-sm">รูปร้าน 3</div>
+    </div>
+    <div class="flex justify-center gap-1.5 -mt-4 relative z-10">
+      <span class="w-2 h-2 rounded-full bg-white shadow"></span>
+      <span class="w-2 h-2 rounded-full bg-white/50"></span>
+      <span class="w-2 h-2 rounded-full bg-white/50"></span>
+    </div>
+
+    <!-- ข้อมูลร้าน -->
+    <div class="px-4 py-4">
+      <span class="chip bg-primary-50 text-primary-700">ร้านอาหาร</span>
+      <h1 class="text-xl font-bold text-neutral-900 mt-2">ครัวริมเล ทับสะแก</h1>
+      <p class="text-sm text-neutral-600 mt-1">ร้านอาหารทะเลสดริมหาด บรรยากาศสบาย ๆ เมนูเด่นคือปูผัดผงกะหรี่และกุ้งเผา</p>
+
+      <!-- ปุ่มลัด -->
+      <div class="grid grid-cols-3 gap-2 mt-4">
+        <button class="bg-primary-600 text-white rounded-lg py-2.5 text-sm font-medium flex flex-col items-center gap-0.5"><span>📞</span>โทร</button>
+        <button class="bg-white border border-neutral-200 text-neutral-700 rounded-lg py-2.5 text-sm font-medium flex flex-col items-center gap-0.5"><span>🧭</span>นำทาง</button>
+        <button class="bg-white border border-neutral-200 text-neutral-700 rounded-lg py-2.5 text-sm font-medium flex flex-col items-center gap-0.5"><span>💬</span>แชต</button>
+      </div>
+
+      <!-- รายละเอียดติดต่อ -->
+      <div class="mt-5 bg-white rounded-lg border border-neutral-200 divide-y divide-neutral-100">
+        <div class="flex gap-3 p-3 text-sm"><span>📍</span><span class="text-neutral-700">123 ม.4 ต.ทับสะแก อ.ทับสะแก จ.ประจวบคีรีขันธ์</span></div>
+        <div class="flex gap-3 p-3 text-sm"><span>🕒</span><span class="text-neutral-700">เปิดทุกวัน 10:00 – 21:00 น.</span></div>
+        <div class="flex gap-3 p-3 text-sm"><span>📞</span><span class="text-primary-700 font-medium">089-123-4567</span></div>
+        <div class="flex gap-3 p-3 text-sm"><span>🌐</span><span class="text-primary-700">facebook.com/krua-rim-lay</span></div>
+      </div>
+
+      <!-- แผนที่ -->
+      <h2 class="font-semibold text-neutral-800 mt-6 mb-2">ตำแหน่งบนแผนที่</h2>
+      <div class="h-44 rounded-lg bg-neutral-200 border border-neutral-300 flex items-center justify-center text-neutral-500 text-sm">
+        🗺️ แผนที่ (Leaflet / OpenStreetMap)
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="sticky bottom-0 z-20 bg-white border-t border-neutral-200 flex items-stretch">
+      <a href="index.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🏠</span><span class="text-[11px]">หน้าแรก</span></a>
+      <a href="news.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">📰</span><span class="text-[11px]">ข่าว</span></a>
+      <a href="shops.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-primary-600"><span class="text-xl">🛍️</span><span class="text-[11px] font-medium">ร้านค้า</span></a>
+      <a href="tourism.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🏖️</span><span class="text-[11px]">เที่ยว</span></a>
+      <a href="login.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">👤</span><span class="text-[11px]">บัญชี</span></a>
+    </nav>
+
+  </div>
+</body>
+</html>

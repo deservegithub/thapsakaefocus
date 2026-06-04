@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* ============================================================
+   ทับสะแกโฟกัส — Design Tokens (Tailwind v4 @theme)
+   ยกมาจาก mockups/tokens.css → ใช้เป็น bg-primary-600, text-accent-500 ฯลฯ
+   ทิศทาง: เมืองชายทะเล + มะพร้าว → ทะเล (teal) + แดด/ทราย (amber)
+   ============================================================ */
+@theme {
+  --font-sans: var(--font-sans), "IBM Plex Sans Thai", system-ui, sans-serif;
+
+  /* สีหลัก: ทะเล (teal) */
+  --color-primary-50: #f0fbfa;
+  --color-primary-100: #d8f3f1;
+  --color-primary-200: #b3e7e4;
+  --color-primary-300: #80d6d1;
+  --color-primary-400: #45bdb7;
+  --color-primary-500: #1ea29c;
+  --color-primary-600: #0e8580;
+  --color-primary-700: #0c6a67;
+  --color-primary-800: #0d5552;
+  --color-primary-900: #0f4644;
+
+  /* สีเน้น: แดด/มะพร้าว (amber) */
+  --color-accent-50: #fff8ed;
+  --color-accent-100: #ffefd3;
+  --color-accent-200: #fed9a6;
+  --color-accent-300: #fdbe6e;
+  --color-accent-400: #fa9b34;
+  --color-accent-500: #f5800c;
+  --color-accent-600: #d96405;
+  --color-accent-700: #b44908;
+  --color-accent-800: #92390e;
+  --color-accent-900: #78310f;
+
+  /* เทากลาง: โทนทราย */
+  --color-neutral-50: #faf9f7;
+  --color-neutral-100: #f3f1ed;
+  --color-neutral-200: #e8e4dd;
+  --color-neutral-300: #d4cec3;
+  --color-neutral-400: #a8a093;
+  --color-neutral-500: #797166;
+  --color-neutral-600: #595348;
+  --color-neutral-700: #423d35;
+  --color-neutral-800: #2b2823;
+  --color-neutral-900: #1a1815;
+
+  /* สถานะ */
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-online: #22c55e;
+}
+
+body {
+  background: var(--color-neutral-50);
+  color: var(--color-neutral-800);
+}

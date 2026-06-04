@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ร้านค้าและบริการ — ทับสะแกโฟกัส</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="theme.js"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center py-6 text-neutral-800">
+
+  <div class="phone mb-3 px-4"><p class="text-xs text-neutral-600">Wireframe · หน้ารายการร้านค้า · มือถือ</p></div>
+
+  <div class="phone bg-neutral-50 shadow-lg overflow-hidden" style="border-radius: var(--radius-xl);">
+
+    <header class="sticky top-0 z-20 bg-primary-600 text-white" style="height: var(--header-h);">
+      <div class="h-full px-2 flex items-center justify-between">
+        <div class="flex items-center gap-1">
+          <a href="index.html" class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-xl">‹</a>
+          <span class="font-semibold text-base">ร้านค้าและบริการ</span>
+        </div>
+        <button class="w-9 h-9 rounded-md hover:bg-white/10 flex items-center justify-center text-lg">🗺️</button>
+      </div>
+    </header>
+
+    <div class="bg-primary-600 px-4 pb-4">
+      <div class="bg-white rounded-lg shadow-sm flex items-center gap-2 px-3 py-2.5">
+        <span class="text-neutral-400 text-lg">🔍</span>
+        <input type="text" placeholder="ค้นหาร้านค้า บริการ…" class="flex-1 text-sm text-neutral-700 placeholder:text-neutral-400 outline-none bg-transparent" />
+      </div>
+    </div>
+
+    <!-- กรองหมวดร้าน (เลื่อนแนวนอน) -->
+    <div class="sticky z-10 bg-neutral-50 py-3 border-b border-neutral-200" style="top: var(--header-h);">
+      <div class="flex gap-2 overflow-x-auto no-scrollbar px-4">
+        <button class="chip bg-primary-600 text-white whitespace-nowrap">ทั้งหมด</button>
+        <button class="chip bg-white border border-neutral-200 text-neutral-600 whitespace-nowrap">ร้านอาหาร</button>
+        <button class="chip bg-white border border-neutral-200 text-neutral-600 whitespace-nowrap">คาเฟ่</button>
+        <button class="chip bg-white border border-neutral-200 text-neutral-600 whitespace-nowrap">ที่พัก</button>
+        <button class="chip bg-white border border-neutral-200 text-neutral-600 whitespace-nowrap">ของฝาก</button>
+        <button class="chip bg-white border border-neutral-200 text-neutral-600 whitespace-nowrap">บริการ</button>
+      </div>
+    </div>
+
+    <!-- รายการร้าน (การ์ดแนวนอน มีรูป) -->
+    <section class="px-4 py-4 space-y-3">
+
+      <a href="shop-detail.html" class="flex gap-3 bg-white rounded-lg shadow-sm border border-neutral-200 p-2.5">
+        <div class="w-24 h-24 rounded-md bg-gradient-to-br from-accent-200 to-accent-400 shrink-0 flex items-center justify-center text-white/70 text-xs">รูปร้าน</div>
+        <div class="min-w-0 flex-1">
+          <h3 class="font-semibold text-neutral-800 leading-snug">ครัวริมเล ทับสะแก</h3>
+          <p class="text-xs text-neutral-500 mt-0.5">ร้านอาหาร · อาหารทะเลสด</p>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-1">📍 ต.ทับสะแก · เปิด 10:00–21:00</p>
+          <div class="flex items-center gap-1 mt-1.5">
+            <span class="chip bg-primary-50 text-primary-700">ร้านอาหาร</span>
+            <span class="text-xs text-neutral-400">📞 พร้อมโทร</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="shop-detail.html" class="flex gap-3 bg-white rounded-lg shadow-sm border border-neutral-200 p-2.5">
+        <div class="w-24 h-24 rounded-md bg-gradient-to-br from-primary-200 to-primary-400 shrink-0 flex items-center justify-center text-white/70 text-xs">รูปร้าน</div>
+        <div class="min-w-0 flex-1">
+          <h3 class="font-semibold text-neutral-800 leading-snug">คาเฟ่มะพร้าวอ่อน</h3>
+          <p class="text-xs text-neutral-500 mt-0.5">คาเฟ่ · ของหวาน</p>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-1">📍 ต.อ่างทอง · เปิด 08:00–18:00</p>
+          <div class="flex items-center gap-1 mt-1.5"><span class="chip bg-accent-50 text-accent-700">คาเฟ่</span></div>
+        </div>
+      </a>
+
+      <a href="shop-detail.html" class="flex gap-3 bg-white rounded-lg shadow-sm border border-neutral-200 p-2.5">
+        <div class="w-24 h-24 rounded-md bg-gradient-to-br from-neutral-200 to-neutral-300 shrink-0 flex items-center justify-center text-neutral-400 text-xs">รูปร้าน</div>
+        <div class="min-w-0 flex-1">
+          <h3 class="font-semibold text-neutral-800 leading-snug">โฮมสเตย์ชายทะเล</h3>
+          <p class="text-xs text-neutral-500 mt-0.5">ที่พัก · วิวทะเล</p>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-1">📍 ต.แสงอรุณ</p>
+          <div class="flex items-center gap-1 mt-1.5"><span class="chip bg-primary-50 text-primary-700">ที่พัก</span></div>
+        </div>
+      </a>
+
+      <a href="shop-detail.html" class="flex gap-3 bg-white rounded-lg shadow-sm border border-neutral-200 p-2.5">
+        <div class="w-24 h-24 rounded-md bg-gradient-to-br from-accent-200 to-accent-400 shrink-0 flex items-center justify-center text-white/70 text-xs">รูปร้าน</div>
+        <div class="min-w-0 flex-1">
+          <h3 class="font-semibold text-neutral-800 leading-snug">ของฝากแม่สมจิตร</h3>
+          <p class="text-xs text-neutral-500 mt-0.5">ของฝาก · มะพร้าวแปรรูป</p>
+          <p class="text-xs text-neutral-500 mt-1 line-clamp-1">📍 ต.ทับสะแก</p>
+          <div class="flex items-center gap-1 mt-1.5"><span class="chip bg-accent-50 text-accent-700">ของฝาก</span></div>
+        </div>
+      </a>
+
+    </section>
+
+    <nav class="sticky bottom-0 z-20 bg-white border-t border-neutral-200 flex items-stretch">
+      <a href="index.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🏠</span><span class="text-[11px]">หน้าแรก</span></a>
+      <a href="news.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">📰</span><span class="text-[11px]">ข่าว</span></a>
+      <a href="shops.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-primary-600"><span class="text-xl">🛍️</span><span class="text-[11px] font-medium">ร้านค้า</span></a>
+      <a href="tourism.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">🏖️</span><span class="text-[11px]">เที่ยว</span></a>
+      <a href="login.html" class="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-neutral-400"><span class="text-xl">👤</span><span class="text-[11px]">บัญชี</span></a>
+    </nav>
+
+  </div>
+</body>
+</html>
