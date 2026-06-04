@@ -2,6 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl"
 import { Link, usePathname } from "@/i18n/navigation"
+import { SearchBox } from "@/components/search-box"
 
 type Section = "home" | "news" | "shops" | "tourism"
 
@@ -31,7 +32,7 @@ export function SiteHeader({ active }: { active?: Section }) {
           </div>
         </Link>
 
-        {/* เมนูหลัก — แสดงบนจอ sm ขึ้นไป (shops/tourism ยังไม่ทำ เป็น span ก่อน) */}
+        {/* เมนูหลัก — แสดงบนจอ sm ขึ้นไป */}
         <nav className="ml-2 hidden items-center gap-1 sm:flex">
           <Link href="/" className={linkCls("home")}>
             {t("home")}
@@ -47,30 +48,35 @@ export function SiteHeader({ active }: { active?: Section }) {
           </Link>
         </nav>
 
-        {/* ตัวสลับภาษา — คงหน้าเดิม */}
-        <div className="ml-auto flex items-center overflow-hidden rounded-md border border-neutral-200 text-sm">
-          <Link
-            href={pathname}
-            locale="th"
-            className={
-              locale === "th"
-                ? "bg-primary-600 px-2.5 py-1.5 font-medium text-white"
-                : "px-2.5 py-1.5 text-neutral-500 hover:bg-neutral-50"
-            }
-          >
-            TH
-          </Link>
-          <Link
-            href={pathname}
-            locale="en"
-            className={
-              locale === "en"
-                ? "bg-primary-600 px-2.5 py-1.5 font-medium text-white"
-                : "px-2.5 py-1.5 text-neutral-500 hover:bg-neutral-50"
-            }
-          >
-            EN
-          </Link>
+        {/* ขวา: ค้นหา (desktop) + ตัวสลับภาษา */}
+        <div className="ml-auto flex items-center gap-3">
+          <div className="hidden md:block">
+            <SearchBox />
+          </div>
+          <div className="flex items-center overflow-hidden rounded-md border border-neutral-200 text-sm">
+            <Link
+              href={pathname}
+              locale="th"
+              className={
+                locale === "th"
+                  ? "bg-primary-600 px-2.5 py-1.5 font-medium text-white"
+                  : "px-2.5 py-1.5 text-neutral-500 hover:bg-neutral-50"
+              }
+            >
+              TH
+            </Link>
+            <Link
+              href={pathname}
+              locale="en"
+              className={
+                locale === "en"
+                  ? "bg-primary-600 px-2.5 py-1.5 font-medium text-white"
+                  : "px-2.5 py-1.5 text-neutral-500 hover:bg-neutral-50"
+              }
+            >
+              EN
+            </Link>
+          </div>
         </div>
       </div>
     </header>

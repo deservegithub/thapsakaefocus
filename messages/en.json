@@ -62,5 +62,16 @@
     "online": "{count} online now",
     "connecting": "Connecting…",
     "copyright": "© 2026 thapsakaefocus.com · Community platform (not affiliated with any government agency)"
+  },
+  "search": {
+    "placeholder": "Search news, shops, places…",
+    "button": "Search",
+    "title": "Search",
+    "resultsFor": "Results for “{q}”",
+    "prompt": "Type a query and press search",
+    "empty": "No results for “{q}”",
+    "countNews": "News ({count})",
+    "countShops": "Shops ({count})",
+    "countPlaces": "Travel ({count})"
   }
 }

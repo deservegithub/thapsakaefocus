@@ -62,5 +62,16 @@
     "online": "{count} คนกำลังออนไลน์",
     "connecting": "กำลังเชื่อมต่อ…",
     "copyright": "© 2569 thapsakaefocus.com · แพลตฟอร์มชุมชนเชิงพาณิชย์ (ไม่เกี่ยวข้องกับหน่วยงานราชการ)"
+  },
+  "search": {
+    "placeholder": "ค้นหาข่าว ร้านค้า สถานที่…",
+    "button": "ค้นหา",
+    "title": "ค้นหา",
+    "resultsFor": "ผลการค้นหา “{q}”",
+    "prompt": "พิมพ์คำค้นแล้วกดค้นหา",
+    "empty": "ไม่พบผลลัพธ์สำหรับ “{q}”",
+    "countNews": "ข่าว ({count})",
+    "countShops": "ร้านค้า ({count})",
+    "countPlaces": "ท่องเที่ยว ({count})"
   }
 }
