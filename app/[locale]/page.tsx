@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server"
 import { use } from "react"
 import { Link } from "@/i18n/navigation"
 import { SiteHeader } from "@/components/site-header"
+import { SearchBox } from "@/components/search-box"
 
 export default function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params)
@@ -20,15 +21,8 @@ export default function HomePage({ params }: { params: Promise<{ locale: string 
         <div className="mx-auto max-w-6xl px-6 py-20">
           <h1 className="max-w-2xl text-4xl leading-tight font-bold">{t("title")}</h1>
           <p className="text-primary-100 mt-3 max-w-xl text-lg">{t("subtitle")}</p>
-          <div className="mt-6 flex max-w-md items-center gap-2 rounded-xl bg-white px-4 py-3 shadow-lg">
-            <span className="text-lg text-neutral-400">🔍</span>
-            <input
-              className="flex-1 bg-transparent text-neutral-700 outline-none"
-              placeholder={t("searchPlaceholder")}
-            />
-            <button className="bg-accent-500 rounded-lg px-4 py-1.5 text-sm font-medium text-white">
-              {locale === "th" ? "ค้นหา" : "Search"}
-            </button>
+          <div className="mt-6">
+            <SearchBox variant="hero" />
           </div>
         </div>
       </section>
