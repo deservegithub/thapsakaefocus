@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from "next-intl"
 import { Link, usePathname } from "@/i18n/navigation"
 import { SearchBox } from "@/components/search-box"
+import { AccountMenu } from "@/components/account-menu"
 
 type Section = "home" | "news" | "shops" | "tourism"
 
@@ -77,6 +78,7 @@ export function SiteHeader({ active }: { active?: Section }) {
               EN
             </Link>
           </div>
+          <AccountMenu />
         </div>
       </div>
     </header>

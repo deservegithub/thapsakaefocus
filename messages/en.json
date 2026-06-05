@@ -85,5 +85,21 @@
     "areaValue": "Thapsakae District, Prachuap Khiri Khan",
     "shopOwnerTitle": "Shop owner?",
     "shopOwnerBody": "Soon shops will be able to register and edit their own info. For now, send us your details and our team will list it for you."
+  },
+  "auth": {
+    "title": "Sign in",
+    "subtitle": "Sign in to use all features",
+    "google": "Continue with Google",
+    "facebook": "Continue with Facebook",
+    "line": "Continue with LINE",
+    "lineSoon": "LINE (coming soon)",
+    "agree": "By signing in you accept the Terms of Service and Privacy Policy.",
+    "skip": "Skip · browse without signing in",
+    "error": "Sign-in failed. Please try again."
+  },
+  "account": {
+    "login": "Sign in",
+    "logout": "Sign out",
+    "admin": "Manage"
   }
 }
