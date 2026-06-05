@@ -10,6 +10,17 @@ function str(fd: FormData, key: string): string | null {
   return typeof v === "string" && v.trim() !== "" ? v.trim() : null
 }
 
+// ทำ slug ให้ปลอดภัยกับ URL: ASCII (อังกฤษ/เลข/ขีด) — เลี่ยงปัญหา encode ของอักขระไทยใน URL
+// ถ้าพิมพ์ไทยล้วน (slugify แล้วว่าง) → fallback เป็น id สุ่ม จะได้ route ได้เสมอ
+function slugify(s: string): string {
+  const base = s
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+  return base || "news-" + crypto.randomUUID().slice(0, 8)
+}
+
 // บันทึก (insert ถ้าไม่มี id, update ถ้ามี) — เขียนผ่าน user session → RLS is_admin() บังคับ
 export async function saveNews(formData: FormData) {
   const supabase = await createClient()
@@ -28,8 +39,9 @@ export async function saveNews(formData: FormData) {
   }
 
   const title_th = str(formData, "title_th")
-  const slug = str(formData, "slug")
-  if (!title_th || !slug) throw new Error("ต้องกรอกหัวข้อ (TH) และ slug")
+  const rawSlug = str(formData, "slug")
+  if (!title_th || !rawSlug) throw new Error("ต้องกรอกหัวข้อ (TH) และ slug")
+  const slug = slugify(rawSlug)
 
   const row = {
     type: str(formData, "type") || "announcement",
