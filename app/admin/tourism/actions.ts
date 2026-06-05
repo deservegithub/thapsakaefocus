@@ -40,6 +40,14 @@ export async function savePlace(formData: FormData) {
   const name_th = str(formData, "name_th")
   if (!name_th) throw new Error("ต้องกรอกชื่อสถานที่ (TH)")
 
+  // รูปหน้าปก (เดี่ยว) — ไม่เลือกใหม่ = คงของเดิม
+  let cover_image_url = str(formData, "cover_image_url")
+  const coverFile = formData.get("cover")
+  if (coverFile instanceof File && coverFile.size > 0) {
+    const [url] = await uploadImages(supabase, [coverFile])
+    if (url) cover_image_url = url
+  }
+
   const row = {
     category_id: num(formData, "category_id"),
     name_th,
@@ -49,6 +57,7 @@ export async function savePlace(formData: FormData) {
     address: str(formData, "address"),
     lat: num(formData, "lat"),
     lng: num(formData, "lng"),
+    cover_image_url,
     status: str(formData, "status") || "draft",
   }
 

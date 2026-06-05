@@ -57,13 +57,52 @@ export async function saveNews(formData: FormData) {
     cover_image_url,
   }
 
-  const { error } = id
-    ? await supabase.from("news_articles").update(row).eq("id", id)
-    : await supabase.from("news_articles").insert(row)
-  if (error) throw new Error("บันทึกไม่สำเร็จ: " + error.message)
+  let newsId = id
+  if (id) {
+    const { error } = await supabase.from("news_articles").update(row).eq("id", id)
+    if (error) throw new Error("บันทึกไม่สำเร็จ: " + error.message)
+  } else {
+    const { data, error } = await supabase.from("news_articles").insert(row).select("id").single()
+    if (error) throw new Error("บันทึกไม่สำเร็จ: " + error.message)
+    newsId = data.id
+  }
+
+  // แกลเลอรี (รูปหลายรูป) → ต่อท้าย news_images
+  const gallery = formData.getAll("gallery").filter((f): f is File => f instanceof File)
+  const urls: string[] = []
+  for (const file of gallery) {
+    if (file.size === 0) continue
+    const ext = (file.name.split(".").pop() || "jpg").toLowerCase()
+    const path = `news/gallery/${crypto.randomUUID()}.${ext}`
+    const { error: upErr } = await supabase.storage
+      .from("public-images")
+      .upload(path, file, { contentType: file.type || undefined })
+    if (upErr) throw new Error("อัปโหลดรูปแกลเลอรีไม่สำเร็จ: " + upErr.message)
+    urls.push(supabase.storage.from("public-images").getPublicUrl(path).data.publicUrl)
+  }
+  if (urls.length > 0) {
+    const { count } = await supabase
+      .from("news_images")
+      .select("*", { count: "exact", head: true })
+      .eq("news_id", newsId)
+    const start = count ?? 0
+    const { error } = await supabase
+      .from("news_images")
+      .insert(urls.map((url, i) => ({ news_id: newsId, url, sort_order: start + i })))
+    if (error) throw new Error("บันทึกรูปแกลเลอรีไม่สำเร็จ: " + error.message)
+  }
 
   revalidatePath("/admin/news")
   redirect("/admin/news")
+}
+
+export async function deleteNewsImage(formData: FormData) {
+  const supabase = await createClient()
+  const imageId = formData.get("imageId") as string
+  const newsId = formData.get("newsId") as string
+  const { error } = await supabase.from("news_images").delete().eq("id", imageId)
+  if (error) throw new Error(error.message)
+  revalidatePath(`/admin/news/${newsId}`)
 }
 
 export async function deleteNews(formData: FormData) {

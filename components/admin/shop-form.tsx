@@ -17,6 +17,7 @@ type ShopInitial = {
   phone: string | null
   lat: number | null
   lng: number | null
+  cover_image_url: string | null
   status: string
   images: ShopImage[]
 }
@@ -171,9 +172,30 @@ export function ShopForm({
           </div>
 
           <div className="rounded-xl border border-neutral-200 bg-white p-5">
-            <label className={label}>เพิ่มรูป (เลือกได้หลายรูป)</label>
+            <label className={label}>รูปหน้าปก (1 รูป)</label>
+            <input
+              type="hidden"
+              name="cover_image_url"
+              defaultValue={initial?.cover_image_url ?? ""}
+            />
+            {initial?.cover_image_url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={initial.cover_image_url}
+                alt=""
+                className="mb-2 h-28 w-full rounded-md object-cover"
+              />
+            )}
+            <input type="file" name="cover" accept="image/*" className="text-sm" />
+            <p className="mt-1 text-xs text-neutral-400">
+              ใช้บนการ์ดและหัวหน้ารายละเอียด (ไม่เลือก = คงเดิม)
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-neutral-200 bg-white p-5">
+            <label className={label}>รูปแกลเลอรี (เลือกได้หลายรูป)</label>
             <input type="file" name="images" accept="image/*" multiple className="text-sm" />
-            <p className="mt-1 text-xs text-neutral-400">อัปโหลดเข้า Supabase Storage</p>
+            <p className="mt-1 text-xs text-neutral-400">แสดงในหน้ารายละเอียด</p>
           </div>
 
           <button

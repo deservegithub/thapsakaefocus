@@ -3,8 +3,9 @@ import { notFound } from "next/navigation"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/navigation"
 import { SiteHeader } from "@/components/site-header"
-import { getNewsBySlug, incrementNewsView } from "@/lib/news"
+import { getNewsBySlug, incrementNewsView, sortedImages } from "@/lib/news"
 import { localized } from "@/lib/i18n-content"
+import { Gallery } from "@/components/gallery"
 import { formatDate, formatNumber } from "@/lib/format"
 
 export async function generateMetadata({
@@ -36,6 +37,7 @@ export default async function NewsDetailPage({
   await incrementNewsView(slug)
 
   const t = await getTranslations("news")
+  const media = await getTranslations("media")
   const title = localized(article, "title", locale)
   const content = localized(article, "content", locale)
   const paragraphs = content.split(/\n+/).filter((p) => p.trim() !== "")
@@ -103,6 +105,8 @@ export default async function NewsDetailPage({
               <p key={i}>{p}</p>
             ))}
           </div>
+
+          <Gallery images={sortedImages(article.news_images)} title={media("photos")} />
         </article>
       </main>
     </div>

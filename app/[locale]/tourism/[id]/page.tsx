@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { getPlaceById, sortedImages } from "@/lib/tourism"
 import { localized } from "@/lib/i18n-content"
 import { PlaceMap } from "@/components/place-map"
+import { Gallery } from "@/components/gallery"
 
 export async function generateMetadata({
   params,
@@ -33,7 +34,9 @@ export default async function PlaceDetailPage({
   if (!place) notFound()
 
   const t = await getTranslations("tourism")
+  const media = await getTranslations("media")
   const images = sortedImages(place.place_images)
+  const heroUrl = place.cover_image_url ?? images[0]?.url ?? null
   const showFallbackNote = locale === "en" && (!place.name_en || place.name_en.trim() === "")
   const mapHref =
     place.lat != null && place.lng != null
@@ -51,20 +54,11 @@ export default async function PlaceDetailPage({
           ‹ {t("backToList")}
         </Link>
 
-        {/* แกลเลอรี (หรือ placeholder) */}
+        {/* รูปหน้าปก (cover) */}
         <div className="mt-4 overflow-hidden rounded-xl">
-          {images.length > 0 ? (
-            <div className="flex snap-x gap-2 overflow-x-auto">
-              {images.map((im, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={i}
-                  src={im.url}
-                  alt=""
-                  className="h-56 w-full shrink-0 snap-center rounded-xl object-cover"
-                />
-              ))}
-            </div>
+          {heroUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={heroUrl} alt="" className="h-56 w-full rounded-xl object-cover sm:h-72" />
           ) : (
             <div className="from-primary-300 to-primary-500 flex h-56 items-center justify-center rounded-xl bg-gradient-to-br text-sm text-white/70">
               รูปสถานที่
@@ -116,6 +110,9 @@ export default async function PlaceDetailPage({
             <p key={i}>{p}</p>
           ))}
         </div>
+
+        {/* แกลเลอรีรูป */}
+        <Gallery images={images} title={media("photos")} />
 
         {/* แผนที่ (Leaflet + OpenStreetMap) */}
         {place.lat != null && place.lng != null && (

@@ -55,17 +55,18 @@ export default async function TourismListPage({
         ) : (
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
             {places.map((place, i) => {
-              const img = sortedImages(place.place_images)[0]
+              const coverUrl =
+                place.cover_image_url ?? sortedImages(place.place_images)[0]?.url ?? null
               return (
                 <Link
                   key={place.id}
                   href={`/tourism/${place.id}`}
                   className="group relative h-48 overflow-hidden rounded-xl shadow-sm sm:h-56"
                 >
-                  {img ? (
+                  {coverUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={img.url}
+                      src={coverUrl}
                       alt=""
                       className="absolute inset-0 h-full w-full object-cover"
                     />

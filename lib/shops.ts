@@ -20,6 +20,7 @@ export type ShopListItem = {
   phone: string | null
   lat: number | null
   lng: number | null
+  cover_image_url: string | null
   category: { slug: string; label_th: string; label_en: string | null } | null
   shop_images: ShopImage[]
 }
@@ -30,7 +31,7 @@ export type ShopDetail = ShopListItem & {
 }
 
 const SHOP_SELECT =
-  "id, name_th, name_en, description_th, description_en, address, phone, lat, lng, category:shop_categories(slug,label_th,label_en), shop_images(url,sort_order)"
+  "id, name_th, name_en, description_th, description_en, address, phone, lat, lng, cover_image_url, category:shop_categories(slug,label_th,label_en), shop_images(url,sort_order)"
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
