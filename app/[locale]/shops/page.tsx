@@ -63,15 +63,20 @@ export default async function ShopsListPage({
                   href={`/shops/${shop.id}`}
                   className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md"
                 >
-                  <div
-                    className={`flex h-28 items-center justify-center text-xs text-white/70 sm:h-32 ${
-                      i % 2 === 0
-                        ? "from-accent-200 to-accent-400 bg-gradient-to-br"
-                        : "from-primary-200 to-primary-400 bg-gradient-to-br"
-                    }`}
-                  >
-                    {img ? "" : "รูปร้าน"}
-                  </div>
+                  {img ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={img.url} alt="" className="h-28 w-full object-cover sm:h-32" />
+                  ) : (
+                    <div
+                      className={`flex h-28 items-center justify-center text-xs text-white/70 sm:h-32 ${
+                        i % 2 === 0
+                          ? "from-accent-200 to-accent-400 bg-gradient-to-br"
+                          : "from-primary-200 to-primary-400 bg-gradient-to-br"
+                      }`}
+                    >
+                      รูปร้าน
+                    </div>
+                  )}
                   <div className="p-3">
                     {shop.category && (
                       <span className="bg-primary-50 text-primary-700 inline-block rounded-md px-2 py-0.5 text-[11px] font-medium">

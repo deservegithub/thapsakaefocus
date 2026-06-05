@@ -50,12 +50,18 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               >
                 📰 ข่าวสาร
               </Link>
-              <span className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-neutral-500">
-                🛍️ ร้านค้า <em className="ml-auto text-[10px] not-italic">เร็ว ๆ นี้</em>
-              </span>
-              <span className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-neutral-500">
-                🏖️ ท่องเที่ยว <em className="ml-auto text-[10px] not-italic">เร็ว ๆ นี้</em>
-              </span>
+              <Link
+                href="/admin/shops"
+                className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-neutral-800"
+              >
+                🛍️ ร้านค้า
+              </Link>
+              <Link
+                href="/admin/tourism"
+                className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-neutral-800"
+              >
+                🏖️ ท่องเที่ยว
+              </Link>
             </nav>
             <div className="border-t border-neutral-800 p-3">
               <Link
