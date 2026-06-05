@@ -79,15 +79,24 @@ export default async function NewsDetailPage({
             </p>
           )}
 
-          <div
-            className={`flex h-52 items-center justify-center rounded-xl text-sm text-white/70 sm:h-72 ${
-              article.type === "event"
-                ? "from-accent-200 to-accent-400 bg-gradient-to-br"
-                : "from-primary-300 to-primary-500 bg-gradient-to-br"
-            } my-6`}
-          >
-            {article.cover_image_url ? "" : "รูปปกข่าว"}
-          </div>
+          {article.cover_image_url ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={article.cover_image_url}
+              alt={title}
+              className="my-6 h-52 w-full rounded-xl object-cover sm:h-72"
+            />
+          ) : (
+            <div
+              className={`my-6 flex h-52 items-center justify-center rounded-xl text-sm text-white/70 sm:h-72 ${
+                article.type === "event"
+                  ? "from-accent-200 to-accent-400 bg-gradient-to-br"
+                  : "from-primary-300 to-primary-500 bg-gradient-to-br"
+              }`}
+            >
+              รูปปกข่าว
+            </div>
+          )}
 
           <div className="space-y-4 text-[16px] leading-relaxed text-neutral-700">
             {paragraphs.map((p, i) => (

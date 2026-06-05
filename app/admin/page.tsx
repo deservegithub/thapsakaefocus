@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 
 async function counts() {
@@ -34,8 +35,19 @@ export default async function AdminDashboard() {
         ))}
       </div>
 
-      <div className="mt-8 rounded-xl border border-dashed border-neutral-300 bg-white p-8 text-center text-neutral-500">
-        🚧 ระบบจัดการเนื้อหา (เพิ่ม/แก้ไข/ลบ/ซ่อน + อัปโหลดรูป) กำลังพัฒนาในขั้นต่อไป
+      <div className="mt-8 flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-5">
+        <div>
+          <div className="font-medium text-neutral-800">จัดการข่าวสาร</div>
+          <div className="text-sm text-neutral-500">
+            เพิ่ม/แก้ไข/ลบ/ซ่อน + อัปโหลดรูป (ร้านค้า/ท่องเที่ยว เร็ว ๆ นี้)
+          </div>
+        </div>
+        <Link
+          href="/admin/news"
+          className="bg-primary-600 hover:bg-primary-700 rounded-lg px-4 py-2 text-sm font-medium text-white"
+        >
+          ไปจัดการข่าว ›
+        </Link>
       </div>
     </div>
   )

@@ -40,13 +40,16 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <nav className="flex-1 space-y-1 p-3 text-sm">
               <Link
                 href="/admin"
-                className="bg-primary-600 flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium text-white"
+                className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium hover:bg-neutral-800"
               >
                 📊 แดชบอร์ด
               </Link>
-              <span className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-neutral-500">
-                📰 ข่าวสาร <em className="ml-auto text-[10px] not-italic">เร็ว ๆ นี้</em>
-              </span>
+              <Link
+                href="/admin/news"
+                className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-neutral-800"
+              >
+                📰 ข่าวสาร
+              </Link>
               <span className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-neutral-500">
                 🛍️ ร้านค้า <em className="ml-auto text-[10px] not-italic">เร็ว ๆ นี้</em>
               </span>
