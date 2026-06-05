@@ -64,15 +64,24 @@ export default async function NewsListPage({
                 href={`/news/${featured.slug}`}
                 className="block overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md"
               >
-                <div
-                  className={`flex h-44 items-center justify-center text-sm text-white/70 sm:h-56 ${
-                    featured.type === "event"
-                      ? "from-accent-200 to-accent-400 bg-gradient-to-br"
-                      : "from-primary-200 to-primary-400 bg-gradient-to-br"
-                  }`}
-                >
-                  {featured.cover_image_url ? "" : "รูปปกข่าว"}
-                </div>
+                {featured.cover_image_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={featured.cover_image_url}
+                    alt=""
+                    className="h-44 w-full object-cover sm:h-56"
+                  />
+                ) : (
+                  <div
+                    className={`flex h-44 items-center justify-center text-sm text-white/70 sm:h-56 ${
+                      featured.type === "event"
+                        ? "from-accent-200 to-accent-400 bg-gradient-to-br"
+                        : "from-primary-200 to-primary-400 bg-gradient-to-br"
+                    }`}
+                  >
+                    รูปปกข่าว
+                  </div>
+                )}
                 <div className="p-4">
                   <span
                     className={`inline-block rounded-md px-2 py-0.5 text-[11px] font-medium ${typeChip(featured.type)}`}
@@ -100,15 +109,24 @@ export default async function NewsListPage({
                 href={`/news/${item.slug}`}
                 className="flex gap-3 rounded-xl border border-neutral-200 bg-white p-2.5 shadow-sm transition hover:shadow-md"
               >
-                <div
-                  className={`flex h-24 w-24 shrink-0 items-center justify-center rounded-md text-[10px] text-white/70 ${
-                    item.type === "event"
-                      ? "from-accent-200 to-accent-400 bg-gradient-to-br"
-                      : "from-primary-200 to-primary-400 bg-gradient-to-br"
-                  }`}
-                >
-                  {item.cover_image_url ? "" : "รูป"}
-                </div>
+                {item.cover_image_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={item.cover_image_url}
+                    alt=""
+                    className="h-24 w-24 shrink-0 rounded-md object-cover"
+                  />
+                ) : (
+                  <div
+                    className={`flex h-24 w-24 shrink-0 items-center justify-center rounded-md text-[10px] text-white/70 ${
+                      item.type === "event"
+                        ? "from-accent-200 to-accent-400 bg-gradient-to-br"
+                        : "from-primary-200 to-primary-400 bg-gradient-to-br"
+                    }`}
+                  >
+                    รูป
+                  </div>
+                )}
                 <div className="min-w-0 flex-1">
                   <span
                     className={`inline-block rounded-md px-2 py-0.5 text-[11px] font-medium ${typeChip(item.type)}`}
