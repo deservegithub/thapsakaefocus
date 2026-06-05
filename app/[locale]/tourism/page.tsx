@@ -62,21 +62,28 @@ export default async function TourismListPage({
                   href={`/tourism/${place.id}`}
                   className="group relative h-48 overflow-hidden rounded-xl shadow-sm sm:h-56"
                 >
-                  <div
-                    className={`absolute inset-0 ${
-                      i % 3 === 0
-                        ? "from-primary-300 to-primary-500 bg-gradient-to-br"
-                        : i % 3 === 1
-                          ? "from-accent-200 to-accent-400 bg-gradient-to-br"
-                          : "from-primary-200 to-primary-400 bg-gradient-to-br"
-                    }`}
-                  >
-                    {!img && (
+                  {img ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={img.url}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div
+                      className={`absolute inset-0 ${
+                        i % 3 === 0
+                          ? "from-primary-300 to-primary-500 bg-gradient-to-br"
+                          : i % 3 === 1
+                            ? "from-accent-200 to-accent-400 bg-gradient-to-br"
+                            : "from-primary-200 to-primary-400 bg-gradient-to-br"
+                      }`}
+                    >
                       <span className="flex h-full items-center justify-center text-sm text-white/60">
                         รูปสถานที่
                       </span>
-                    )}
-                  </div>
+                    </div>
+                  )}
                   <div className="from-primary-900/80 via-primary-900/10 absolute inset-0 bg-gradient-to-t to-transparent" />
                   <div className="absolute bottom-0 p-3 text-white">
                     {place.category && (

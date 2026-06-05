@@ -35,18 +35,27 @@ export default async function AdminDashboard() {
         ))}
       </div>
 
-      <div className="mt-8 flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-5">
-        <div>
-          <div className="font-medium text-neutral-800">จัดการข่าวสาร</div>
-          <div className="text-sm text-neutral-500">
-            เพิ่ม/แก้ไข/ลบ/ซ่อน + อัปโหลดรูป (ร้านค้า/ท่องเที่ยว เร็ว ๆ นี้)
-          </div>
-        </div>
+      <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <Link
           href="/admin/news"
-          className="bg-primary-600 hover:bg-primary-700 rounded-lg px-4 py-2 text-sm font-medium text-white"
+          className="hover:border-primary-300 rounded-xl border border-neutral-200 bg-white p-4"
         >
-          ไปจัดการข่าว ›
+          <div className="font-medium text-neutral-800">📰 จัดการข่าวสาร ›</div>
+          <div className="text-xs text-neutral-500">เพิ่ม/แก้/ลบ/ซ่อน + รูป</div>
+        </Link>
+        <Link
+          href="/admin/shops"
+          className="hover:border-primary-300 rounded-xl border border-neutral-200 bg-white p-4"
+        >
+          <div className="font-medium text-neutral-800">🛍️ จัดการร้านค้า ›</div>
+          <div className="text-xs text-neutral-500">เพิ่ม/แก้/ลบ/ซ่อน + รูปหลายรูป</div>
+        </Link>
+        <Link
+          href="/admin/tourism"
+          className="hover:border-primary-300 rounded-xl border border-neutral-200 bg-white p-4"
+        >
+          <div className="font-medium text-neutral-800">🏖️ จัดการท่องเที่ยว ›</div>
+          <div className="text-xs text-neutral-500">เพิ่ม/แก้/ลบ/ซ่อน + รูปหลายรูป</div>
         </Link>
       </div>
     </div>
