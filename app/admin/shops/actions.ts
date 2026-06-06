@@ -15,25 +15,6 @@ function num(fd: FormData, key: string): number | null {
   return Number.isFinite(n) ? n : null
 }
 
-// อัปโหลดไฟล์รูปทั้งหมดที่แนบมา → คืน URL สาธารณะ
-async function uploadImages(
-  supabase: Awaited<ReturnType<typeof createClient>>,
-  files: File[]
-): Promise<string[]> {
-  const urls: string[] = []
-  for (const file of files) {
-    if (!(file instanceof File) || file.size === 0) continue
-    const ext = (file.name.split(".").pop() || "jpg").toLowerCase()
-    const path = `shops/${crypto.randomUUID()}.${ext}`
-    const { error } = await supabase.storage
-      .from("public-images")
-      .upload(path, file, { contentType: file.type || undefined })
-    if (error) throw new Error("อัปโหลดรูปไม่สำเร็จ: " + error.message)
-    urls.push(supabase.storage.from("public-images").getPublicUrl(path).data.publicUrl)
-  }
-  return urls
-}
-
 export async function saveShop(formData: FormData) {
   const supabase = await createClient()
   const id = str(formData, "id")
@@ -41,13 +22,8 @@ export async function saveShop(formData: FormData) {
   const name_th = str(formData, "name_th")
   if (!name_th) throw new Error("ต้องกรอกชื่อร้าน (TH)")
 
-  // รูปหน้าปก (เดี่ยว) — ไม่เลือกใหม่ = คงของเดิม
-  let cover_image_url = str(formData, "cover_image_url")
-  const coverFile = formData.get("cover")
-  if (coverFile instanceof File && coverFile.size > 0) {
-    const [url] = await uploadImages(supabase, [coverFile])
-    if (url) cover_image_url = url
-  }
+  // รูปอัปโหลดฝั่ง client แล้ว — รับมาเป็น URL
+  const cover_image_url = str(formData, "cover_url")
 
   const row = {
     category_id: num(formData, "category_id"),
@@ -73,9 +49,10 @@ export async function saveShop(formData: FormData) {
     shopId = data.id
   }
 
-  // อัปโหลดรูปที่แนบเพิ่ม → ต่อท้าย shop_images
-  const files = formData.getAll("images").filter((f): f is File => f instanceof File)
-  const urls = await uploadImages(supabase, files)
+  // แกลเลอรี — รับ URL ที่อัปโหลดฝั่ง client มาแล้ว → ต่อท้าย shop_images
+  const urls = formData
+    .getAll("gallery_url")
+    .filter((v): v is string => typeof v === "string" && v.trim() !== "")
   if (urls.length > 0) {
     const { count } = await supabase
       .from("shop_images")

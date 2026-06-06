@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { saveNews, deleteNewsImage } from "@/app/admin/news/actions"
 import { ConfirmSubmit } from "@/components/admin/confirm-submit"
+import { ImageUploader } from "@/components/admin/image-uploader"
 
 type NewsInitial = {
   id: string
@@ -61,7 +62,6 @@ export function NewsForm({ initial }: { initial?: NewsInitial | null }) {
 
       <form action={saveNews} className="grid grid-cols-3 gap-6">
         {initial?.id && <input type="hidden" name="id" value={initial.id} />}
-        <input type="hidden" name="cover_image_url" defaultValue={initial?.cover_image_url ?? ""} />
 
         {/* เนื้อหา (แท็บภาษา) */}
         <div className="col-span-2 space-y-5">
@@ -167,25 +167,23 @@ export function NewsForm({ initial }: { initial?: NewsInitial | null }) {
           </div>
 
           <div className="rounded-xl border border-neutral-200 bg-white p-5">
-            <label className={label}>รูปปก</label>
-            {initial?.cover_image_url && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={initial.cover_image_url}
-                alt=""
-                className="mb-2 h-28 w-full rounded-md object-cover"
-              />
-            )}
-            <input type="file" name="cover" accept="image/*" className="text-sm" />
-            <p className="mt-1 text-xs text-neutral-400">
-              อัปโหลดเข้า Supabase Storage (ไม่เลือก = คงรูปเดิม)
-            </p>
+            <ImageUploader
+              name="cover_url"
+              folder="news"
+              label="รูปปก (1 รูป)"
+              defaultUrls={initial?.cover_image_url ? [initial.cover_image_url] : []}
+              hint="ใช้บนการ์ดและหัวหน้ารายละเอียด"
+            />
           </div>
 
           <div className="rounded-xl border border-neutral-200 bg-white p-5">
-            <label className={label}>รูปแกลเลอรี (เลือกได้หลายรูป)</label>
-            <input type="file" name="gallery" accept="image/*" multiple className="text-sm" />
-            <p className="mt-1 text-xs text-neutral-400">แสดงในหน้ารายละเอียด</p>
+            <ImageUploader
+              name="gallery_url"
+              folder="news/gallery"
+              label="รูปแกลเลอรี (เลือกได้หลายรูป)"
+              multiple
+              hint="เลือกหลายรูปพร้อมกันได้ · แสดงในหน้ารายละเอียด"
+            />
           </div>
 
           <button

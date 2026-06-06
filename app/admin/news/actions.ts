@@ -26,17 +26,8 @@ export async function saveNews(formData: FormData) {
   const supabase = await createClient()
   const id = str(formData, "id")
 
-  let cover_image_url = str(formData, "cover_image_url") // ของเดิม (ถ้าไม่อัปโหลดใหม่)
-  const file = formData.get("cover")
-  if (file instanceof File && file.size > 0) {
-    const ext = (file.name.split(".").pop() || "jpg").toLowerCase()
-    const path = `news/${crypto.randomUUID()}.${ext}`
-    const { error: upErr } = await supabase.storage
-      .from("public-images")
-      .upload(path, file, { contentType: file.type || undefined })
-    if (upErr) throw new Error("อัปโหลดรูปไม่สำเร็จ: " + upErr.message)
-    cover_image_url = supabase.storage.from("public-images").getPublicUrl(path).data.publicUrl
-  }
+  // รูปอัปโหลดฝั่ง client แล้ว — รับมาเป็น URL
+  const cover_image_url = str(formData, "cover_url")
 
   const title_th = str(formData, "title_th")
   const rawSlug = str(formData, "slug")
@@ -67,19 +58,10 @@ export async function saveNews(formData: FormData) {
     newsId = data.id
   }
 
-  // แกลเลอรี (รูปหลายรูป) → ต่อท้าย news_images
-  const gallery = formData.getAll("gallery").filter((f): f is File => f instanceof File)
-  const urls: string[] = []
-  for (const file of gallery) {
-    if (file.size === 0) continue
-    const ext = (file.name.split(".").pop() || "jpg").toLowerCase()
-    const path = `news/gallery/${crypto.randomUUID()}.${ext}`
-    const { error: upErr } = await supabase.storage
-      .from("public-images")
-      .upload(path, file, { contentType: file.type || undefined })
-    if (upErr) throw new Error("อัปโหลดรูปแกลเลอรีไม่สำเร็จ: " + upErr.message)
-    urls.push(supabase.storage.from("public-images").getPublicUrl(path).data.publicUrl)
-  }
+  // แกลเลอรี (รูปหลายรูป) — รับ URL ที่อัปโหลดฝั่ง client มาแล้ว → ต่อท้าย news_images
+  const urls = formData
+    .getAll("gallery_url")
+    .filter((v): v is string => typeof v === "string" && v.trim() !== "")
   if (urls.length > 0) {
     const { count } = await supabase
       .from("news_images")
