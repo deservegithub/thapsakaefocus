@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { savePlace, deletePlaceImage } from "@/app/admin/tourism/actions"
 import { ConfirmSubmit } from "@/components/admin/confirm-submit"
+import { ImageUploader } from "@/components/admin/image-uploader"
 
 type Category = { id: number; label_th: string; label_en: string | null }
 type PlaceImage = { id: string; url: string }
@@ -16,6 +17,7 @@ type PlaceInitial = {
   address: string | null
   lat: number | null
   lng: number | null
+  cover_image_url: string | null
   status: string
   images: PlaceImage[]
 }
@@ -161,9 +163,23 @@ export function PlaceForm({
           </div>
 
           <div className="rounded-xl border border-neutral-200 bg-white p-5">
-            <label className={label}>เพิ่มรูป (เลือกได้หลายรูป)</label>
-            <input type="file" name="images" accept="image/*" multiple className="text-sm" />
-            <p className="mt-1 text-xs text-neutral-400">อัปโหลดเข้า Supabase Storage</p>
+            <ImageUploader
+              name="cover_url"
+              folder="places"
+              label="รูปหน้าปก (1 รูป)"
+              defaultUrls={initial?.cover_image_url ? [initial.cover_image_url] : []}
+              hint="ใช้บนการ์ดและหัวหน้ารายละเอียด"
+            />
+          </div>
+
+          <div className="rounded-xl border border-neutral-200 bg-white p-5">
+            <ImageUploader
+              name="gallery_url"
+              folder="places/gallery"
+              label="รูปแกลเลอรี (เลือกได้หลายรูป)"
+              multiple
+              hint="เลือกหลายรูปพร้อมกันได้ · แสดงในหน้ารายละเอียด"
+            />
           </div>
 
           <button

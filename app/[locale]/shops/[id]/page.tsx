@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { getShopById, sortedImages } from "@/lib/shops"
 import { localized } from "@/lib/i18n-content"
 import { PlaceMap } from "@/components/place-map"
+import { Gallery } from "@/components/gallery"
 
 export async function generateMetadata({
   params,
@@ -33,7 +34,9 @@ export default async function ShopDetailPage({
   if (!shop) notFound()
 
   const t = await getTranslations("shops")
+  const media = await getTranslations("media")
   const images = sortedImages(shop.shop_images)
+  const heroUrl = shop.cover_image_url ?? images[0]?.url ?? null
   const showFallbackNote = locale === "en" && (!shop.name_en || shop.name_en.trim() === "")
   const mapHref =
     shop.lat != null && shop.lng != null
@@ -49,20 +52,11 @@ export default async function ShopDetailPage({
           ‹ {t("backToList")}
         </Link>
 
-        {/* แกลเลอรี (หรือ placeholder) */}
+        {/* รูปหน้าปก (cover) */}
         <div className="mt-4 overflow-hidden rounded-xl">
-          {images.length > 0 ? (
-            <div className="flex snap-x gap-2 overflow-x-auto">
-              {images.map((im, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={i}
-                  src={im.url}
-                  alt=""
-                  className="h-56 w-full shrink-0 snap-center rounded-xl object-cover"
-                />
-              ))}
-            </div>
+          {heroUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={heroUrl} alt="" className="h-56 w-full rounded-xl object-cover sm:h-72" />
           ) : (
             <div className="from-accent-200 to-accent-400 flex h-56 items-center justify-center rounded-xl bg-gradient-to-br text-sm text-white/70">
               รูปร้าน
@@ -88,6 +82,9 @@ export default async function ShopDetailPage({
         <p className="mt-2 leading-relaxed text-neutral-700">
           {localized(shop, "description", locale)}
         </p>
+
+        {/* แกลเลอรีรูป */}
+        <Gallery images={images} title={media("photos")} />
 
         {/* ปุ่มลัด */}
         <div className="mt-5 grid grid-cols-2 gap-2">

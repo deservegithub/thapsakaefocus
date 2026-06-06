@@ -15,30 +15,15 @@ function num(fd: FormData, key: string): number | null {
   return Number.isFinite(n) ? n : null
 }
 
-async function uploadImages(
-  supabase: Awaited<ReturnType<typeof createClient>>,
-  files: File[]
-): Promise<string[]> {
-  const urls: string[] = []
-  for (const file of files) {
-    if (!(file instanceof File) || file.size === 0) continue
-    const ext = (file.name.split(".").pop() || "jpg").toLowerCase()
-    const path = `places/${crypto.randomUUID()}.${ext}`
-    const { error } = await supabase.storage
-      .from("public-images")
-      .upload(path, file, { contentType: file.type || undefined })
-    if (error) throw new Error("อัปโหลดรูปไม่สำเร็จ: " + error.message)
-    urls.push(supabase.storage.from("public-images").getPublicUrl(path).data.publicUrl)
-  }
-  return urls
-}
-
 export async function savePlace(formData: FormData) {
   const supabase = await createClient()
   const id = str(formData, "id")
 
   const name_th = str(formData, "name_th")
   if (!name_th) throw new Error("ต้องกรอกชื่อสถานที่ (TH)")
+
+  // รูปอัปโหลดฝั่ง client แล้ว — รับมาเป็น URL
+  const cover_image_url = str(formData, "cover_url")
 
   const row = {
     category_id: num(formData, "category_id"),
@@ -49,6 +34,7 @@ export async function savePlace(formData: FormData) {
     address: str(formData, "address"),
     lat: num(formData, "lat"),
     lng: num(formData, "lng"),
+    cover_image_url,
     status: str(formData, "status") || "draft",
   }
 
@@ -62,8 +48,10 @@ export async function savePlace(formData: FormData) {
     placeId = data.id
   }
 
-  const files = formData.getAll("images").filter((f): f is File => f instanceof File)
-  const urls = await uploadImages(supabase, files)
+  // แกลเลอรี — รับ URL ที่อัปโหลดฝั่ง client มาแล้ว → ต่อท้าย place_images
+  const urls = formData
+    .getAll("gallery_url")
+    .filter((v): v is string => typeof v === "string" && v.trim() !== "")
   if (urls.length > 0) {
     const { count } = await supabase
       .from("place_images")

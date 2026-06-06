@@ -56,16 +56,17 @@ export default async function ShopsListPage({
         ) : (
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {shops.map((shop, i) => {
-              const img = sortedImages(shop.shop_images)[0]
+              const coverUrl =
+                shop.cover_image_url ?? sortedImages(shop.shop_images)[0]?.url ?? null
               return (
                 <Link
                   key={shop.id}
                   href={`/shops/${shop.id}`}
                   className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md"
                 >
-                  {img ? (
+                  {coverUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={img.url} alt="" className="h-28 w-full object-cover sm:h-32" />
+                    <img src={coverUrl} alt="" className="h-28 w-full object-cover sm:h-32" />
                   ) : (
                     <div
                       className={`flex h-28 items-center justify-center text-xs text-white/70 sm:h-32 ${

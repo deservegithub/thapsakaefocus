@@ -5,6 +5,12 @@ import createNextIntlPlugin from "next-intl/plugin"
 const withNextIntl = createNextIntlPlugin()
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // เพิ่มขีดจำกัดขนาด Server Action (default 1MB) ให้อัปโหลดรูปหลายรูป/รูปใหญ่จากมือถือได้
+    serverActions: {
+      bodySizeLimit: "25mb",
+    },
+  },
   // images.remotePatterns สำหรับ Supabase Storage จะเติมตอนเชื่อม Supabase
 }
 

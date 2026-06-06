@@ -101,5 +101,8 @@
     "login": "Sign in",
     "logout": "Sign out",
     "admin": "Manage"
+  },
+  "media": {
+    "photos": "Photos"
   }
 }

@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# โฟลเดอร์สำเนา/แพ็กเกจที่วางไว้ในโปรเจกต์ (ไม่ใช่ส่วนของแอป)
+ThapsakaeFocus_Package/
