@@ -39,8 +39,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${ibmPlexThai.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col font-sans">
-        {/* React 19 จะ hoist <script src> ขึ้น <head> ให้เอง — ไม่ต้องเขียน <head> เอง */}
+      {/* suppressHydrationWarning: กัน warning จาก attribute ที่ browser extension ฉีดใส่ body
+          (เช่น ColorZilla cz-shortcut-listen) — ไม่กระทบ hydration ของเนื้อหาจริง */}
+      <body className="flex min-h-full flex-col font-sans" suppressHydrationWarning>
         <Analytics />
         <NextIntlClientProvider>
           <div className="flex-1">{children}</div>
