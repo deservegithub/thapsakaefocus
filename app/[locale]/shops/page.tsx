@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/navigation"
 import { SiteHeader } from "@/components/site-header"
@@ -65,8 +66,15 @@ export default async function ShopsListPage({
                   className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md"
                 >
                   {coverUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={coverUrl} alt="" className="h-28 w-full object-cover sm:h-32" />
+                    <div className="relative h-28 w-full sm:h-32">
+                      <Image
+                        src={coverUrl}
+                        alt=""
+                        fill
+                        sizes="(max-width: 640px) 50vw, 33vw"
+                        className="object-cover"
+                      />
+                    </div>
                   ) : (
                     <div
                       className={`flex h-28 items-center justify-center text-xs text-white/70 sm:h-32 ${

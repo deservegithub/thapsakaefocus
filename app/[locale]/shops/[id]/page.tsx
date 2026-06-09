@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/navigation"
@@ -55,8 +56,15 @@ export default async function ShopDetailPage({
         {/* รูปหน้าปก (cover) */}
         <div className="mt-4 overflow-hidden rounded-xl">
           {heroUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={heroUrl} alt="" className="h-56 w-full rounded-xl object-cover sm:h-72" />
+            <div className="relative h-56 w-full sm:h-72">
+              <Image
+                src={heroUrl}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="rounded-xl object-cover"
+              />
+            </div>
           ) : (
             <div className="from-accent-200 to-accent-400 flex h-56 items-center justify-center rounded-xl bg-gradient-to-br text-sm text-white/70">
               รูปร้าน

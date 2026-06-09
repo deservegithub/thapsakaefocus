@@ -5,6 +5,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl"
 import { setRequestLocale } from "next-intl/server"
 import { routing } from "@/i18n/routing"
 import { SiteFooter } from "@/components/site-footer"
+import { Analytics } from "@/components/analytics"
 import "../globals.css"
 
 const ibmPlexThai = IBM_Plex_Sans_Thai({
@@ -39,6 +40,8 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${ibmPlexThai.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
+        {/* React 19 จะ hoist <script src> ขึ้น <head> ให้เอง — ไม่ต้องเขียน <head> เอง */}
+        <Analytics />
         <NextIntlClientProvider>
           <div className="flex-1">{children}</div>
           <SiteFooter />

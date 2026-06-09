@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/navigation"
@@ -82,12 +83,15 @@ export default async function NewsDetailPage({
           )}
 
           {article.cover_image_url ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={article.cover_image_url}
-              alt={title}
-              className="my-6 h-52 w-full rounded-xl object-cover sm:h-72"
-            />
+            <div className="relative my-6 h-52 w-full sm:h-72">
+              <Image
+                src={article.cover_image_url}
+                alt={title}
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="rounded-xl object-cover"
+              />
+            </div>
           ) : (
             <div
               className={`my-6 flex h-52 items-center justify-center rounded-xl text-sm text-white/70 sm:h-72 ${

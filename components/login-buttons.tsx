@@ -5,7 +5,18 @@ import { useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { createClient } from "@/lib/supabase/client"
 
-type Provider = "google" | "facebook"
+type Provider = "google" | "facebook" | "line"
+
+// provider slug ที่ส่งให้ Supabase
+// - google/facebook เป็น provider ในตัว
+// - LINE ไม่มีในตัว → เพิ่มเป็น Custom OIDC ใน Supabase Dashboard (slug ขึ้นต้นด้วย custom:)
+//   ตั้งชื่อ provider ใน Dashboard ให้ตรงกับค่านี้ (หรือ override ด้วย env)
+const LINE_SLUG = process.env.NEXT_PUBLIC_LINE_OIDC_PROVIDER || "custom:line"
+const PROVIDER_SLUG: Record<Provider, string> = {
+  google: "google",
+  facebook: "facebook",
+  line: LINE_SLUG,
+}
 
 export function LoginButtons() {
   const t = useTranslations("auth")
@@ -17,7 +28,13 @@ export function LoginButtons() {
     const supabase = createClient()
     const next = searchParams.get("next") || "/"
     const redirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`
-    const { error } = await supabase.auth.signInWithOAuth({ provider, options: { redirectTo } })
+    const { error } = await supabase.auth.signInWithOAuth({
+      // Custom OIDC slug ("custom:…") ไม่อยู่ในยูเนียน Provider ของ supabase-js — cast จาก type ของเมธอดเอง
+      provider: PROVIDER_SLUG[provider] as Parameters<
+        typeof supabase.auth.signInWithOAuth
+      >[0]["provider"],
+      options: { redirectTo },
+    })
     if (error) setLoading(null)
   }
 
@@ -42,14 +59,14 @@ export function LoginButtons() {
         {loading === "facebook" ? "…" : t("facebook")}
       </button>
 
-      {/* LINE — เพิ่มผ่าน Custom OIDC ในรอบถัดไป */}
       <button
-        disabled
-        className="flex w-full items-center justify-center gap-3 rounded-lg py-3 text-sm font-medium text-white opacity-50"
+        onClick={() => signIn("line")}
+        disabled={loading !== null}
+        className="flex w-full items-center justify-center gap-3 rounded-lg py-3 text-sm font-medium text-white disabled:opacity-60"
         style={{ background: "#06C755" }}
       >
         <span className="text-lg">💬</span>
-        {t("lineSoon")}
+        {loading === "line" ? "…" : t("line")}
       </button>
     </div>
   )
