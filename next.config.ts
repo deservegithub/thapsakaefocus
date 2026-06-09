@@ -11,12 +11,8 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseHost = supabaseUrl ? new URL(supabaseUrl).hostname : undefined
 
 const nextConfig: NextConfig = {
-  experimental: {
-    // เพิ่มขีดจำกัดขนาด Server Action (default 1MB) ให้อัปโหลดรูปหลายรูป/รูปใหญ่จากมือถือได้
-    serverActions: {
-      bodySizeLimit: "25mb",
-    },
-  },
+  // หมายเหตุ: ไม่ต้องตั้ง serverActions.bodySizeLimit แล้ว เพราะรูปอัปโหลดฝั่ง client
+  // ตรงเข้า storage (ดู components/admin/image-uploader.tsx) → server action รับแค่ URL
   images: {
     remotePatterns: supabaseHost
       ? [

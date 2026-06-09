@@ -1,3 +1,5 @@
+import Script from "next/script"
+
 // Plausible Analytics (privacy-first) — โหลด script เฉพาะเมื่อมีการตั้งค่า domain เท่านั้น
 // ตั้งค่าใน .env.local:
 //   NEXT_PUBLIC_PLAUSIBLE_DOMAIN=thapsakaefocus.com
@@ -8,5 +10,5 @@ export function Analytics() {
 
   const src = process.env.NEXT_PUBLIC_PLAUSIBLE_SRC || "https://plausible.io/js/script.js"
 
-  return <script defer data-domain={domain} src={src} />
+  return <Script defer data-domain={domain} src={src} strategy="afterInteractive" />
 }

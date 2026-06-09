@@ -18,6 +18,9 @@ const PROVIDER_SLUG: Record<Provider, string> = {
   line: LINE_SLUG,
 }
 
+// แสดงปุ่ม LINE เฉพาะเมื่อพร้อมแล้ว (ตั้ง Custom OIDC ใน Supabase เสร็จ → NEXT_PUBLIC_LINE_ENABLED=true)
+const LINE_ENABLED = process.env.NEXT_PUBLIC_LINE_ENABLED === "true"
+
 export function LoginButtons() {
   const t = useTranslations("auth")
   const searchParams = useSearchParams()
@@ -59,15 +62,17 @@ export function LoginButtons() {
         {loading === "facebook" ? "…" : t("facebook")}
       </button>
 
-      <button
-        onClick={() => signIn("line")}
-        disabled={loading !== null}
-        className="flex w-full items-center justify-center gap-3 rounded-lg py-3 text-sm font-medium text-white disabled:opacity-60"
-        style={{ background: "#06C755" }}
-      >
-        <span className="text-lg">💬</span>
-        {loading === "line" ? "…" : t("line")}
-      </button>
+      {LINE_ENABLED && (
+        <button
+          onClick={() => signIn("line")}
+          disabled={loading !== null}
+          className="flex w-full items-center justify-center gap-3 rounded-lg py-3 text-sm font-medium text-white disabled:opacity-60"
+          style={{ background: "#06C755" }}
+        >
+          <span className="text-lg">💬</span>
+          {loading === "line" ? "…" : t("line")}
+        </button>
+      )}
     </div>
   )
 }
