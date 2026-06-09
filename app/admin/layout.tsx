@@ -24,7 +24,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <html lang="th" className={`${ibmPlexThai.variable} h-full antialiased`}>
-      <body className="min-h-full bg-neutral-100 font-sans text-neutral-800">
+      <body
+        className="min-h-full bg-neutral-100 font-sans text-neutral-800"
+        suppressHydrationWarning
+      >
         <div className="flex min-h-screen">
           {/* Sidebar */}
           <aside className="flex w-60 shrink-0 flex-col bg-neutral-900 text-neutral-300">
