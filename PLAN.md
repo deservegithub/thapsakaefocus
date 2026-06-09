@@ -2,7 +2,9 @@
 ### เอกสารวางแผนก่อนพัฒนา (Pre-development Plan & Checklist)
 
 > เอกสารฉบับนี้ใช้สำหรับตรวจสอบความพร้อมและความถูกต้องก่อนลงมือพัฒนา
-> ปรับปรุงล่าสุด: 4 มิถุนายน 2569 · สถานะ: ฉบับร่างเพื่อตรวจสอบ (แก้ไขครั้งที่ 4 — เพิ่มข้อกำหนดสองภาษา ไทย/อังกฤษ ตั้งแต่ชั้นฐานข้อมูล + UI i18n; ครั้งที่ 3 — ปรับ data model เป็น profiles, เพิ่มแนวทาง RLS/ค้นหาไทย/แผนที่, เติมข้อควรระวัง free-tier และ Next.js 16)
+> ปรับปรุงล่าสุด: 9 มิถุนายน 2569 · สถานะ: **กำลังพัฒนา** (แก้ไขครั้งที่ 5 — อัปเดตเช็กลิสต์ให้ตรงกับโค้ดจริง: 3 หมวด + admin + auth + ค้นหา + ตัวนับออนไลน์ + i18n เสร็จแล้ว, เพิ่ม image optimization/LINE OIDC/Plausible/Sentry; ครั้งที่ 4 — เพิ่มข้อกำหนดสองภาษา; ครั้งที่ 3 — ปรับ data model เป็น profiles)
+
+> **สรุปสถานะ (9 มิ.ย. 69):** บิลด์เขียว · เฟส 1–3 เสร็จเกือบหมด · ที่ยังเหลือเด่น ๆ คือ **PWA (ยังไม่ทำ)**, การตั้งค่า provider/บัญชีภายนอก (Supabase Storage bucket, OAuth credentials, LINE OIDC, Sentry DSN, Plausible domain), CI/CD, และเนื้อหาจริง — ดูเครื่องหมาย ✅/⬜ ในหัวข้อ 11–12
 
 ---
 
@@ -229,27 +231,30 @@ Supabase
 - [ ] เตรียมบัญชีและบริการ (Supabase, Vercel, GitHub, โดเมน)
 
 ### เฟส 1 — ออกแบบ (Design)
-- [ ] ทำ wireframe หน้าหลัก (หน้าแรก, รายการร้านค้า, รายละเอียด, ข่าว, ท่องเที่ยว)
-- [ ] กำหนด design system (สี ตัวอักษร component) ให้ใช้ได้ทั้งเว็บและ PWA
-- [ ] สรุป schema ฐานข้อมูลขั้นสุดท้าย (หัวข้อ 7) — profiles + trigger, status/updated_at ครบทุกตาราง
-- [ ] ตัดสินใจ 3 เรื่องที่ค้าง: แนวทางค้นหาไทย, map provider (Leaflet/OSM vs Google), จัดการ free-tier pause (keep-alive vs Pro)
+- [x] ทำ wireframe หน้าหลัก (มี mockups/ + หน้าจริงครบทุกหมวด)
+- [x] กำหนด design system (tokens.css, IBM Plex Sans Thai, teal+amber, component ใช้ร่วมเว็บ/PWA)
+- [x] สรุป schema ฐานข้อมูลขั้นสุดท้าย — profiles + trigger, status/updated_at, `_th`/`_en` ครบ (supabase/migrations/0001)
+- [x] ตัดสินใจ 3 เรื่องที่ค้าง: ค้นหาไทย = `pg_trgm`/`ILIKE`, map = Leaflet/OSM, free-tier = Supabase Pro
 
 ### เฟส 2 — ตั้งโครงโปรเจกต์ (Scaffolding)
-- [ ] ตั้งค่าโปรเจกต์ Next.js 16.2.6+ + TypeScript + Tailwind
-- [ ] ตั้งค่า ESLint/Prettier (ปิด semicolon)
-- [ ] เชื่อม Supabase (สร้างตาราง, RLS, Storage bucket)
-- [ ] ตั้งค่า social login: เปิด Google/Facebook + เพิ่ม Line เป็น Custom OIDC
-- [ ] ตั้งค่า PWA (manifest + service worker + ไอคอน)
+- [x] ตั้งค่าโปรเจกต์ Next.js 16.2.7 + TypeScript + Tailwind v4
+- [x] ตั้งค่า ESLint/Prettier (ปิด semicolon)
+- [x] เชื่อม Supabase — โค้ด client/server + migration ตาราง/RLS แล้ว ⬜ **ยังต้องรัน migration + สร้าง Storage bucket จริงใน Dashboard**
+- [x] social login: Google/Facebook (โค้ด) + ปุ่ม LINE เรียก Custom OIDC แล้ว ⬜ **ยังต้องตั้ง OAuth credentials + LINE OIDC ใน Dashboard**
+- [x] image optimization: `images.remotePatterns` (Supabase) + แปลงหน้า public เป็น `next/image`
+- [ ] **ตั้งค่า PWA (manifest + service worker + ไอคอน) — ยังไม่ทำ** (แผนเลือก Serwist)
 - [ ] วาง CI/CD เบื้องต้น (GitHub → Vercel)
 
 ### เฟส 3 — พัฒนา (Development)
-- [ ] หมวดข่าวสาร (แสดงผล + admin จัดการ)
-- [ ] หมวดร้านค้า (แสดงผล + รูปภาพ + admin จัดการ)
-- [ ] หมวดท่องเที่ยว (แสดงผล + admin จัดการ)
-- [ ] ระบบค้นหา
-- [ ] ตัวนับผู้ใช้ออนไลน์ใน footer
-- [ ] ระบบสมัครสมาชิก/เข้าสู่ระบบด้วย social login (Google/Facebook/Line)
-- [ ] หน้า admin (จัดการ 3 หมวด) + การป้องกันด้วย role
+- [x] หมวดข่าวสาร (แสดงผล + admin จัดการ)
+- [x] หมวดร้านค้า (แสดงผล + รูปภาพ + admin จัดการ)
+- [x] หมวดท่องเที่ยว (แสดงผล + admin จัดการ)
+- [x] ระบบค้นหา
+- [x] ตัวนับผู้ใช้ออนไลน์ใน footer (Supabase Presence)
+- [x] ระบบสมัครสมาชิก/เข้าสู่ระบบด้วย social login (Google/Facebook/Line — โค้ดฝั่งเว็บ)
+- [x] หน้า admin (จัดการ 3 หมวด) + การป้องกันด้วย role
+- [x] (เสริม) Plausible analytics + Sentry error tracking — โค้ด gated ด้วย env (inert ถ้าไม่ตั้งค่า)
+- [ ] (ข้าม) TanStack Query — ยังไม่ติดตั้ง (แอปเป็น server component, ค่อยเพิ่มเมื่อมี client fetching)
 
 ### เฟส 4 — ทดสอบและเปิดตัว (Testing & Launch)
 - [ ] ทดสอบบนอุปกรณ์จริง (ติดตั้ง PWA บน iOS/Android)
@@ -272,14 +277,14 @@ Supabase
 - [ ] ตรวจสอบสิทธิ์การจัดการโดเมน thapsakaefocus.com
 
 ### โครงสร้างโค้ดและมาตรฐาน
-- [ ] ตั้ง Prettier ปิด semicolon (`"semi": false`) ตามมาตรฐานทีม
-- [ ] กำหนดโครงสร้างโฟลเดอร์ (`app/`, `components/`, `lib/`, `hooks/`)
-- [ ] ตั้งค่า environment variables (`.env.local`) และไม่ commit ขึ้น git
+- [x] ตั้ง Prettier ปิด semicolon (`"semi": false`) ตามมาตรฐานทีม
+- [x] กำหนดโครงสร้างโฟลเดอร์ (`app/`, `components/`, `lib/`, `hooks/`)
+- [x] ตั้งค่า environment variables (`.env.local` + `.env.local.example`) และ gitignore แล้ว
 
 ### ฐานข้อมูลและความปลอดภัย
-- [ ] สร้างตารางตาม schema (profiles + trigger) และตั้ง RLS policy โดยเช็ก role จาก JWT claim (เลี่ยง recursion)
-- [ ] สร้าง Storage bucket สำหรับรูปร้านค้า/สถานที่ พร้อมตั้งสิทธิ์
-- [ ] ตั้ง `images.remotePatterns` ใน next.config ให้ชี้ hostname ของ Supabase Storage
+- [x] เขียน migration ตาราง (profiles + trigger) + RLS เช็ก role ผ่าน `is_admin()` (เลี่ยง recursion) ⬜ ยังต้องรันจริงบน Supabase
+- [ ] สร้าง Storage bucket สำหรับรูปร้านค้า/สถานที่ พร้อมตั้งสิทธิ์ (ทำใน Supabase Dashboard)
+- [x] ตั้ง `images.remotePatterns` ใน next.config ให้ชี้ hostname ของ Supabase Storage (ดึงจาก env อัตโนมัติ)
 - [ ] กำหนดแนวทาง backup ฐานข้อมูล (free tier ไม่มี PITR)
 - [ ] กำหนดบัญชี admin คนแรก
 

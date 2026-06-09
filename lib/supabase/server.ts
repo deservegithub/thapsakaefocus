@@ -21,8 +21,7 @@ export async function createClient() {
             )
           } catch {
             // ถูกเรียกจาก Server Component (set cookie ไม่ได้) — ข้ามได้
-            // TODO(auth): เมื่อทำ auth ต้องประกอบ session refresh ของ Supabase เข้าไปใน proxy.ts
-            //            (ตอนนี้ proxy.ts ทำ i18n ของ next-intl อย่างเดียว ยังไม่ refresh session)
+            // proxy.ts รับหน้าที่ refresh session (เขียน cookie ที่อัปเดต) ให้แล้ว
           }
         },
       },

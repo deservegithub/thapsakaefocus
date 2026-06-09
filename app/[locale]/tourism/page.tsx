@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/navigation"
 import { SiteHeader } from "@/components/site-header"
@@ -64,11 +65,12 @@ export default async function TourismListPage({
                   className="group relative h-48 overflow-hidden rounded-xl shadow-sm sm:h-56"
                 >
                   {coverUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
+                    <Image
                       src={coverUrl}
                       alt=""
-                      className="absolute inset-0 h-full w-full object-cover"
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover"
                     />
                   ) : (
                     <div

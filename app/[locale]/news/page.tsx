@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Link } from "@/i18n/navigation"
 import { SiteHeader } from "@/components/site-header"
@@ -65,12 +66,15 @@ export default async function NewsListPage({
                 className="block overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md"
               >
                 {featured.cover_image_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={featured.cover_image_url}
-                    alt=""
-                    className="h-44 w-full object-cover sm:h-56"
-                  />
+                  <div className="relative h-44 w-full sm:h-56">
+                    <Image
+                      src={featured.cover_image_url}
+                      alt=""
+                      fill
+                      sizes="(max-width: 896px) 100vw, 896px"
+                      className="object-cover"
+                    />
+                  </div>
                 ) : (
                   <div
                     className={`flex h-44 items-center justify-center text-sm text-white/70 sm:h-56 ${
@@ -110,10 +114,11 @@ export default async function NewsListPage({
                 className="flex gap-3 rounded-xl border border-neutral-200 bg-white p-2.5 shadow-sm transition hover:shadow-md"
               >
                 {item.cover_image_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     src={item.cover_image_url}
                     alt=""
+                    width={96}
+                    height={96}
                     className="h-24 w-24 shrink-0 rounded-md object-cover"
                   />
                 ) : (
