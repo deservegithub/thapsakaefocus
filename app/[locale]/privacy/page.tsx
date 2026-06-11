@@ -12,7 +12,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   const footer = await getTranslations({ locale, namespace: "footer" })
-  return { title: `${footer("privacy")} — ทับสะแกโฟกัส` }
+  return { title: footer("privacy") }
 }
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {

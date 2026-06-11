@@ -18,7 +18,7 @@ export async function generateMetadata({
   const shop = await getShopById(id)
   if (!shop) return {}
   return {
-    title: `${localized(shop, "name", locale)} — ทับสะแกโฟกัส`,
+    title: localized(shop, "name", locale),
     description: localized(shop, "description", locale),
   }
 }

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { NextIntlClientProvider, hasLocale } from "next-intl"
 import { setRequestLocale } from "next-intl/server"
 import { routing } from "@/i18n/routing"
+import { SITE_URL, SITE_NAME_TH, SITE_NAME_EN } from "@/lib/site"
 import { SiteFooter } from "@/components/site-footer"
 import { Analytics } from "@/components/analytics"
 import "../globals.css"
@@ -14,10 +15,48 @@ const ibmPlexThai = IBM_Plex_Sans_Thai({
   weight: ["300", "400", "500", "600", "700"],
 })
 
-export const metadata: Metadata = {
-  title: "ทับสะแกโฟกัส",
-  description:
-    "ศูนย์รวมข้อมูลข่าวสาร ร้านค้า และการท่องเที่ยวของอำเภอทับสะแก จังหวัดประจวบคีรีขันธ์",
+// ข้อความ meta ต่อ locale (ชื่อ/คำอธิบายเว็บ) — ใช้ทั้ง <title> และ Open Graph
+const META = {
+  th: {
+    name: SITE_NAME_TH,
+    description:
+      "ศูนย์รวมข้อมูลข่าวสาร ร้านค้า และการท่องเที่ยวของอำเภอทับสะแก จังหวัดประจวบคีรีขันธ์",
+  },
+  en: {
+    name: SITE_NAME_EN,
+    description:
+      "News, local shops, and travel guide for Thapsakae District, Prachuap Khiri Khan, Thailand.",
+  },
+} as const
+
+// metadataBase ทำให้ field ที่เป็น URL สัมพัทธ์ (og:image จาก opengraph-image, canonical) กลายเป็น absolute
+// หมายเหตุ: ไม่ตั้ง canonical/alternates ที่นี่ เพราะ metadata ถูก inherit ลงหน้าลูก →
+// canonical ของหน้าแรกจะรั่วไปทุกหน้า hreflang ครบทุก URL จัดการที่ app/sitemap.ts แทน
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const m = META[locale as keyof typeof META] ?? META.th
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: m.name, template: `%s — ${m.name}` },
+    description: m.description,
+    openGraph: {
+      type: "website",
+      siteName: m.name,
+      title: m.name,
+      description: m.description,
+      locale: locale === "en" ? "en_US" : "th_TH",
+      alternateLocale: locale === "en" ? "th_TH" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: m.name,
+      description: m.description,
+    },
+  }
 }
 
 export function generateStaticParams() {

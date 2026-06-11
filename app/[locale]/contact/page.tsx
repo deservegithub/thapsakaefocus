@@ -10,7 +10,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   const footer = await getTranslations({ locale, namespace: "footer" })
-  return { title: `${footer("contact")} — ทับสะแกโฟกัส` }
+  return { title: footer("contact") }
 }
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {

@@ -18,7 +18,7 @@ export async function generateMetadata({
   const article = await getNewsBySlug(slug)
   if (!article) return {}
   return {
-    title: `${localized(article, "title", locale)} — ทับสะแกโฟกัส`,
+    title: localized(article, "title", locale),
     description: localized(article, "summary", locale),
   }
 }

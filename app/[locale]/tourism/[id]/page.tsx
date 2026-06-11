@@ -18,7 +18,7 @@ export async function generateMetadata({
   const place = await getPlaceById(id)
   if (!place) return {}
   return {
-    title: `${localized(place, "name", locale)} — ทับสะแกโฟกัส`,
+    title: localized(place, "name", locale),
     description: localized(place, "description", locale),
   }
 }

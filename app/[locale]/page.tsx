@@ -1,9 +1,26 @@
+import type { Metadata } from "next"
 import { useTranslations } from "next-intl"
 import { setRequestLocale } from "next-intl/server"
 import { use } from "react"
 import { Link } from "@/i18n/navigation"
 import { SiteHeader } from "@/components/site-header"
 import { SearchBox } from "@/components/search-box"
+import { localizedUrls } from "@/lib/site"
+
+// canonical + hreflang ของหน้าแรก (URL ที่ถูกแชร์/ลิงก์มากสุด) — หน้าอื่นพึ่ง hreflang ใน sitemap
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    alternates: {
+      canonical: `/${locale}`,
+      languages: localizedUrls("/"),
+    },
+  }
+}
 
 export default function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params)
