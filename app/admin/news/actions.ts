@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
+import { removeStorageObjects } from "@/lib/storage"
 
 // อ่านค่า string จาก FormData (ว่าง → null)
 function str(fd: FormData, key: string): string | null {
@@ -50,8 +51,17 @@ export async function saveNews(formData: FormData) {
 
   let newsId = id
   if (id) {
+    // เก็บ cover เดิมไว้เทียบ — ถ้าแอดมินเปลี่ยนรูป ต้องลบไฟล์เก่าทิ้งกัน orphan
+    const { data: existing } = await supabase
+      .from("news_articles")
+      .select("cover_image_url")
+      .eq("id", id)
+      .maybeSingle()
     const { error } = await supabase.from("news_articles").update(row).eq("id", id)
     if (error) throw new Error("บันทึกไม่สำเร็จ: " + error.message)
+    if (existing?.cover_image_url && existing.cover_image_url !== cover_image_url) {
+      await removeStorageObjects(supabase, [existing.cover_image_url])
+    }
   } else {
     const { data, error } = await supabase.from("news_articles").insert(row).select("id").single()
     if (error) throw new Error("บันทึกไม่สำเร็จ: " + error.message)
@@ -82,16 +92,32 @@ export async function deleteNewsImage(formData: FormData) {
   const supabase = await createClient()
   const imageId = formData.get("imageId") as string
   const newsId = formData.get("newsId") as string
+  const { data: img } = await supabase
+    .from("news_images")
+    .select("url")
+    .eq("id", imageId)
+    .maybeSingle()
   const { error } = await supabase.from("news_images").delete().eq("id", imageId)
   if (error) throw new Error(error.message)
+  await removeStorageObjects(supabase, [img?.url])
   revalidatePath(`/admin/news/${newsId}`)
 }
 
 export async function deleteNews(formData: FormData) {
   const supabase = await createClient()
   const id = formData.get("id") as string
+  // เก็บ URL รูปทั้งหมดก่อนลบ — แถวใน news_images จะ cascade หายไปพร้อมข่าว
+  const { data: news } = await supabase
+    .from("news_articles")
+    .select("cover_image_url, news_images(url)")
+    .eq("id", id)
+    .maybeSingle()
   const { error } = await supabase.from("news_articles").delete().eq("id", id)
   if (error) throw new Error(error.message)
+  await removeStorageObjects(supabase, [
+    news?.cover_image_url,
+    ...((news?.news_images ?? []) as { url: string }[]).map((img) => img.url),
+  ])
   revalidatePath("/admin/news")
 }
 
