@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
+import { requireAdmin } from "@/lib/auth"
 import { removeStorageObjects } from "@/lib/storage"
 
 // อ่านค่า string จาก FormData (ว่าง → null)
@@ -24,6 +25,7 @@ function slugify(s: string): string {
 
 // บันทึก (insert ถ้าไม่มี id, update ถ้ามี) — เขียนผ่าน user session → RLS is_admin() บังคับ
 export async function saveNews(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const id = str(formData, "id")
 
@@ -89,6 +91,7 @@ export async function saveNews(formData: FormData) {
 }
 
 export async function deleteNewsImage(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const imageId = formData.get("imageId") as string
   const newsId = formData.get("newsId") as string
@@ -98,12 +101,16 @@ export async function deleteNewsImage(formData: FormData) {
     .eq("id", imageId)
     .maybeSingle()
   const { error } = await supabase.from("news_images").delete().eq("id", imageId)
-  if (error) throw new Error(error.message)
+  if (error) {
+    console.error("deleteNewsImage:", error)
+    throw new Error("ลบรูปไม่สำเร็จ")
+  }
   await removeStorageObjects(supabase, [img?.url])
   revalidatePath(`/admin/news/${newsId}`)
 }
 
 export async function deleteNews(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const id = formData.get("id") as string
   // เก็บ URL รูปทั้งหมดก่อนลบ — แถวใน news_images จะ cascade หายไปพร้อมข่าว
@@ -113,7 +120,10 @@ export async function deleteNews(formData: FormData) {
     .eq("id", id)
     .maybeSingle()
   const { error } = await supabase.from("news_articles").delete().eq("id", id)
-  if (error) throw new Error(error.message)
+  if (error) {
+    console.error("deleteNews:", error)
+    throw new Error("ลบข่าวไม่สำเร็จ")
+  }
   await removeStorageObjects(supabase, [
     news?.cover_image_url,
     ...((news?.news_images ?? []) as { url: string }[]).map((img) => img.url),
@@ -123,10 +133,14 @@ export async function deleteNews(formData: FormData) {
 
 // สลับ published <-> hidden
 export async function setNewsStatus(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const id = formData.get("id") as string
   const status = formData.get("status") as string
   const { error } = await supabase.from("news_articles").update({ status }).eq("id", id)
-  if (error) throw new Error(error.message)
+  if (error) {
+    console.error("setNewsStatus:", error)
+    throw new Error("เปลี่ยนสถานะไม่สำเร็จ")
+  }
   revalidatePath("/admin/news")
 }

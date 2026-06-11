@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
+import { requireAdmin } from "@/lib/auth"
 import { removeStorageObjects } from "@/lib/storage"
 
 function str(fd: FormData, key: string): string | null {
@@ -17,6 +18,7 @@ function num(fd: FormData, key: string): number | null {
 }
 
 export async function savePlace(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const id = str(formData, "id")
 
@@ -78,6 +80,7 @@ export async function savePlace(formData: FormData) {
 }
 
 export async function deletePlace(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const id = formData.get("id") as string
   // เก็บ URL รูปทั้งหมดก่อนลบ — แถวใน place_images จะ cascade หายไปพร้อมสถานที่
@@ -87,7 +90,10 @@ export async function deletePlace(formData: FormData) {
     .eq("id", id)
     .maybeSingle()
   const { error } = await supabase.from("tourism_places").delete().eq("id", id)
-  if (error) throw new Error(error.message)
+  if (error) {
+    console.error("deletePlace:", error)
+    throw new Error("ลบสถานที่ไม่สำเร็จ")
+  }
   await removeStorageObjects(supabase, [
     place?.cover_image_url,
     ...((place?.place_images ?? []) as { url: string }[]).map((img) => img.url),
@@ -96,15 +102,20 @@ export async function deletePlace(formData: FormData) {
 }
 
 export async function setPlaceStatus(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const id = formData.get("id") as string
   const status = formData.get("status") as string
   const { error } = await supabase.from("tourism_places").update({ status }).eq("id", id)
-  if (error) throw new Error(error.message)
+  if (error) {
+    console.error("setPlaceStatus:", error)
+    throw new Error("เปลี่ยนสถานะไม่สำเร็จ")
+  }
   revalidatePath("/admin/tourism")
 }
 
 export async function deletePlaceImage(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const imageId = formData.get("imageId") as string
   const placeId = formData.get("placeId") as string
@@ -114,7 +125,10 @@ export async function deletePlaceImage(formData: FormData) {
     .eq("id", imageId)
     .maybeSingle()
   const { error } = await supabase.from("place_images").delete().eq("id", imageId)
-  if (error) throw new Error(error.message)
+  if (error) {
+    console.error("deletePlaceImage:", error)
+    throw new Error("ลบรูปไม่สำเร็จ")
+  }
   await removeStorageObjects(supabase, [img?.url])
   revalidatePath(`/admin/tourism/${placeId}`)
 }
