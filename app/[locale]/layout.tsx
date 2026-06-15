@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { IBM_Plex_Sans_Thai } from "next/font/google"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider, hasLocale } from "next-intl"
@@ -56,7 +56,18 @@ export async function generateMetadata({
       title: m.name,
       description: m.description,
     },
+    // PWA: ทำให้เปิดแบบ standalone บน iOS ได้ (manifest link Next ใส่ให้อัตโนมัติจาก app/manifest.ts)
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: m.name,
+    },
   }
+}
+
+// สี theme ของแถบเบราว์เซอร์/PWA = teal primary-600 (ตรงกับ manifest)
+export const viewport: Viewport = {
+  themeColor: "#0e8580",
 }
 
 export function generateStaticParams() {
