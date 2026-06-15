@@ -3,6 +3,8 @@
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
+import { requireAdmin } from "@/lib/auth"
+import { removeStorageObjects } from "@/lib/storage"
 
 function str(fd: FormData, key: string): string | null {
   const v = fd.get(key)
@@ -16,6 +18,7 @@ function num(fd: FormData, key: string): number | null {
 }
 
 export async function saveShop(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const id = str(formData, "id")
 
@@ -41,8 +44,17 @@ export async function saveShop(formData: FormData) {
 
   let shopId = id
   if (id) {
+    // เก็บ cover เดิมไว้เทียบ — ถ้าแอดมินเปลี่ยนรูป ต้องลบไฟล์เก่าทิ้งกัน orphan
+    const { data: existing } = await supabase
+      .from("shops")
+      .select("cover_image_url")
+      .eq("id", id)
+      .maybeSingle()
     const { error } = await supabase.from("shops").update(row).eq("id", id)
     if (error) throw new Error("บันทึกไม่สำเร็จ: " + error.message)
+    if (existing?.cover_image_url && existing.cover_image_url !== cover_image_url) {
+      await removeStorageObjects(supabase, [existing.cover_image_url])
+    }
   } else {
     const { data, error } = await supabase.from("shops").insert(row).select("id").single()
     if (error) throw new Error("บันทึกไม่สำเร็จ: " + error.message)
@@ -69,27 +81,55 @@ export async function saveShop(formData: FormData) {
 }
 
 export async function deleteShop(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const id = formData.get("id") as string
+  // เก็บ URL รูปทั้งหมดก่อนลบ — แถวใน shop_images จะ cascade หายไปพร้อมร้าน
+  const { data: shop } = await supabase
+    .from("shops")
+    .select("cover_image_url, shop_images(url)")
+    .eq("id", id)
+    .maybeSingle()
   const { error } = await supabase.from("shops").delete().eq("id", id)
-  if (error) throw new Error(error.message)
+  if (error) {
+    console.error("deleteShop:", error)
+    throw new Error("ลบร้านไม่สำเร็จ")
+  }
+  await removeStorageObjects(supabase, [
+    shop?.cover_image_url,
+    ...((shop?.shop_images ?? []) as { url: string }[]).map((img) => img.url),
+  ])
   revalidatePath("/admin/shops")
 }
 
 export async function setShopStatus(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const id = formData.get("id") as string
   const status = formData.get("status") as string
   const { error } = await supabase.from("shops").update({ status }).eq("id", id)
-  if (error) throw new Error(error.message)
+  if (error) {
+    console.error("setShopStatus:", error)
+    throw new Error("เปลี่ยนสถานะไม่สำเร็จ")
+  }
   revalidatePath("/admin/shops")
 }
 
 export async function deleteShopImage(formData: FormData) {
+  await requireAdmin()
   const supabase = await createClient()
   const imageId = formData.get("imageId") as string
   const shopId = formData.get("shopId") as string
+  const { data: img } = await supabase
+    .from("shop_images")
+    .select("url")
+    .eq("id", imageId)
+    .maybeSingle()
   const { error } = await supabase.from("shop_images").delete().eq("id", imageId)
-  if (error) throw new Error(error.message)
+  if (error) {
+    console.error("deleteShopImage:", error)
+    throw new Error("ลบรูปไม่สำเร็จ")
+  }
+  await removeStorageObjects(supabase, [img?.url])
   revalidatePath(`/admin/shops/${shopId}`)
 }
