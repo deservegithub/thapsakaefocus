@@ -242,7 +242,7 @@ Supabase
 - [x] เชื่อม Supabase — โค้ด client/server + migration ตาราง/RLS แล้ว ⬜ **ยังต้องรัน migration + สร้าง Storage bucket จริงใน Dashboard**
 - [x] social login: Google/Facebook (โค้ด) + ปุ่ม LINE เรียก Custom OIDC แล้ว ⬜ **ยังต้องตั้ง OAuth credentials + LINE OIDC ใน Dashboard**
 - [x] image optimization: `images.remotePatterns` (Supabase) + แปลงหน้า public เป็น `next/image`
-- [ ] **ตั้งค่า PWA (manifest + service worker + ไอคอน) — ยังไม่ทำ** (แผนเลือก Serwist)
+- [x] **ตั้งค่า PWA (manifest + service worker + ไอคอน)** — `@serwist/turbopack` (คง Turbopack), `app/manifest.ts` + ไอคอน 192/512/apple (ImageResponse), `app/sw.ts` + `app/serwist/[path]/route.ts` + `<SerwistProvider>` + หน้า `/~offline`. build+dev เขียว ⬜ ไอคอนเป็น placeholder (รอโลโก้จริง) + ยังไม่ทดสอบ install/offline บนมือถือ (เฟส 4)
 - [ ] วาง CI/CD เบื้องต้น (GitHub → Vercel)
 
 ### เฟส 3 — พัฒนา (Development)
