@@ -1,10 +1,11 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { IBM_Plex_Sans_Thai } from "next/font/google"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider, hasLocale } from "next-intl"
 import { setRequestLocale } from "next-intl/server"
 import { routing } from "@/i18n/routing"
 import { SITE_URL, SITE_NAME_TH, SITE_NAME_EN } from "@/lib/site"
+import { SerwistProvider } from "@serwist/turbopack/react"
 import { SiteFooter } from "@/components/site-footer"
 import { Analytics } from "@/components/analytics"
 import "../globals.css"
@@ -56,7 +57,18 @@ export async function generateMetadata({
       title: m.name,
       description: m.description,
     },
+    // PWA: ทำให้เปิดแบบ standalone บน iOS ได้ (manifest link Next ใส่ให้อัตโนมัติจาก app/manifest.ts)
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: m.name,
+    },
   }
+}
+
+// สี theme ของแถบเบราว์เซอร์/PWA = teal primary-600 (ตรงกับ manifest)
+export const viewport: Viewport = {
+  themeColor: "#0e8580",
 }
 
 export function generateStaticParams() {
@@ -82,10 +94,13 @@ export default async function LocaleLayout({
           (เช่น ColorZilla cz-shortcut-listen) — ไม่กระทบ hydration ของเนื้อหาจริง */}
       <body className="flex min-h-full flex-col font-sans" suppressHydrationWarning>
         <Analytics />
-        <NextIntlClientProvider>
-          <div className="flex-1">{children}</div>
-          <SiteFooter />
-        </NextIntlClientProvider>
+        {/* ลงทะเบียน service worker (PWA) — sw compile ที่ /serwist/sw.js */}
+        <SerwistProvider swUrl="/serwist/sw.js">
+          <NextIntlClientProvider>
+            <div className="flex-1">{children}</div>
+            <SiteFooter />
+          </NextIntlClientProvider>
+        </SerwistProvider>
       </body>
     </html>
   )
