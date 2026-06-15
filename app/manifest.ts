@@ -15,18 +15,14 @@ export default function manifest(): MetadataRoute.Manifest {
     dir: "ltr",
     background_color: "#ffffff",
     theme_color: "#0e8580",
+    // หมายเหตุ: ไอคอน placeholder เป็น wordmark เต็มกรอบ ไม่มี safe-zone จึงประกาศ "any"
+    // (ไม่ใช่ maskable เพราะอาจถูก crop ใต้มาสก์วงกลม) — เพิ่ม maskable เมื่อมีโลโก้จริงพร้อม padding
     icons: [
       {
         src: "/icons/icon-192.png",
         sizes: "192x192",
         type: "image/png",
-        purpose: "maskable",
-      },
-      {
-        src: "/icons/icon-512.png",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "maskable",
+        purpose: "any",
       },
       {
         src: "/icons/icon-512.png",

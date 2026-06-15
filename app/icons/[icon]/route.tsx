@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og"
 import { readFile } from "node:fs/promises"
 import { join } from "node:path"
 
-// ไอคอน PWA แบบ maskable สร้างอัตโนมัติด้วย ImageResponse (เหมือนเทคนิค OG image)
+// ไอคอน PWA (purpose "any") สร้างอัตโนมัติด้วย ImageResponse (เหมือนเทคนิค OG image)
 // URL มีนามสกุล .png จึงข้าม proxy/intl ได้ (matcher ตัด path ที่มีจุด)
 // path: /icons/icon-192.png, /icons/icon-512.png
 // ⚠️ ไอคอนนี้เป็น placeholder (wordmark "ทับสะแก" บนพื้น teal) — ก่อน launch ควรแทนด้วยโลโก้จริง
