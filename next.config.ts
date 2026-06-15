@@ -1,6 +1,7 @@
 import type { NextConfig } from "next"
 import createNextIntlPlugin from "next-intl/plugin"
 import { withSentryConfig } from "@sentry/nextjs"
+import { withSerwist } from "@serwist/turbopack"
 
 // ชี้ไปที่ ./i18n/request.ts โดยปริยาย
 const withNextIntl = createNextIntlPlugin()
@@ -28,7 +29,8 @@ const nextConfig: NextConfig = {
 
 // ห่อด้วย Sentry — การอัปโหลด source map จะทำงานเฉพาะเมื่อมี SENTRY_ORG/PROJECT/AUTH_TOKEN
 // (ไม่มีก็ build ผ่านปกติ เพียงข้ามการอัปโหลด source map)
-export default withSentryConfig(withNextIntl(nextConfig), {
+// ลำดับ plugin: nextIntl → serwist (PWA/Turbopack) → sentry (ชั้นนอกสุด)
+export default withSentryConfig(withSerwist(withNextIntl(nextConfig)), {
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
   authToken: process.env.SENTRY_AUTH_TOKEN,

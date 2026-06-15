@@ -14,10 +14,12 @@ export async function proxy(request: NextRequest) {
 
   // /admin (Thai-only, นอก [locale]) และ /auth/* (callback/signout) ไม่ผ่าน intl locale-redirect
   // /apple-icon = metadata route ของ Next (ไม่มีนามสกุลในพาธ) ถ้าไม่ข้าม intl จะถูก redirect ไป /th/apple-icon → 404
+  // /~offline = หน้า fallback PWA (service worker precache) ต้องไม่โดน locale-redirect
   const skipIntl =
     pathname.startsWith("/admin") ||
     pathname.startsWith("/auth") ||
-    pathname.startsWith("/apple-icon")
+    pathname.startsWith("/apple-icon") ||
+    pathname.startsWith("/~offline")
 
   // response ฐาน: ถ้า skipIntl ใช้ NextResponse.next, ไม่งั้นให้ next-intl จัดการ (อาจ redirect/rewrite locale)
   const response = skipIntl ? NextResponse.next({ request }) : intlMiddleware(request)
