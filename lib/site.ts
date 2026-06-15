@@ -2,9 +2,10 @@ import { routing } from "@/i18n/routing"
 
 // Base URL ของเว็บ (ใช้กับ metadataBase, sitemap, robots, canonical/hreflang)
 // ตั้งผ่าน env ได้ — ตอน deploy ควรตั้ง NEXT_PUBLIC_SITE_URL ให้ตรง production
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://thapsakaefocus.com"
-).replace(/\/$/, "")
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://thapsakaefocus.com").replace(
+  /\/$/,
+  ""
+)
 
 export const SITE_NAME_TH = "ทับสะแกโฟกัส"
 export const SITE_NAME_EN = "Thapsakae Focus"
