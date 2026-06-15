@@ -21,27 +21,25 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
   const font = await readFile(join(process.cwd(), "assets/IBMPlexSansThai-SemiBold.ttf"))
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px 96px",
-          background: "linear-gradient(135deg, #0e8580 0%, #0c6a67 100%)",
-          color: "#ffffff",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div style={{ width: 56, height: 56, borderRadius: 16, background: "#f59e0b" }} />
-          <div style={{ fontSize: 30, color: "#c9efed" }}>thapsakaefocus.com</div>
-        </div>
-        <div style={{ fontSize: 108, lineHeight: 1.1, marginTop: 36 }}>{c.name}</div>
-        <div style={{ fontSize: 40, color: "#c9efed", marginTop: 20 }}>{c.tagline}</div>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        padding: "80px 96px",
+        background: "linear-gradient(135deg, #0e8580 0%, #0c6a67 100%)",
+        color: "#ffffff",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ width: 56, height: 56, borderRadius: 16, background: "#f59e0b" }} />
+        <div style={{ fontSize: 30, color: "#c9efed" }}>thapsakaefocus.com</div>
       </div>
-    ),
+      <div style={{ fontSize: 108, lineHeight: 1.1, marginTop: 36 }}>{c.name}</div>
+      <div style={{ fontSize: 40, color: "#c9efed", marginTop: 20 }}>{c.tagline}</div>
+    </div>,
     {
       ...size,
       fonts: [{ name: "IBM Plex Sans Thai", data: font, weight: 600, style: "normal" }],

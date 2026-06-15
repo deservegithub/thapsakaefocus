@@ -1,0 +1,39 @@
+name: CI
+
+# ตรวจคุณภาพโค้ดแบบ static ทุก PR เข้า main และทุก push ขึ้น main
+# ไม่รัน `next build` ที่นี่ — Vercel build/deploy ให้อยู่แล้ว และ build ต้องใช้ env ของ Supabase
+# checks ด้านล่างไม่ต้องใช้ secret ใด ๆ
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# ยกเลิกรันเก่าเมื่อมี commit ใหม่บน ref เดียวกัน เพื่อประหยัด CI minutes
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Lint · Typecheck · Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: TypeScript
+        run: npm run typecheck
+
+      - name: Prettier
+        run: npm run format:check
